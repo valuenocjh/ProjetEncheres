@@ -2,7 +2,7 @@ package fr.eni.projet.bo;
 
 public class Librairie {
 	
-	String auteur;
+	String auteure;
 	int ISBN;
 
 }

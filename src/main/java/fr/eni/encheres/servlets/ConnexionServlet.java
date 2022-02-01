@@ -26,7 +26,8 @@ request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, 
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String identifiant = request.getParameter("identifiant").trim().toLowerCase();
+		String motDePasse = request.getParameter("motdepasse").trim().toLowerCase();
 	}
 
 }

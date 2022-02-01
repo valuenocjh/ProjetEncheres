@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ConnexionServlet
  */
-@WebServlet("/Accueil")
+@WebServlet("/ConnexionServlet")
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -18,7 +18,7 @@ public class ConnexionServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-request.getRequestDispatcher("/WEB-INF/jsp/listedesencheres.jsp").forward(request, response);
+request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
 	}
 
 	/**

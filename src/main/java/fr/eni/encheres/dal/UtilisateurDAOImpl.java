@@ -10,7 +10,7 @@ import fr.eni.encheres.bo.Utilisateur;
 public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	private final static String SELECT_LOGIN ="SELECT * FROM Utilisateurs where pseudo = ? and mot_de_passe = ?;";
-	private final static String INSERT="INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, administrateur,credit) VALUES ?, ?,?, ?, ?,?,?,?,?,0,1000);";
+	private final static String INSERT="INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, administrateur, credit) VALUES (?, ?,?, ?, ?,?,?,?,?,0,1000);";
 	
 	@Override
 	public void insert(Utilisateur utilisateur) {
@@ -28,12 +28,12 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.setString(8, utilisateur.getVille());
 			stmt.setString(9, utilisateur.getMotDePasse());
 			stmt.executeUpdate();
-			stmt.close();
-			cnx.close();
+		
 		
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getCause());
+		} finally {
+			ConnectionProvider.seDeconnecter(null, null);
 		}
 	
 	}
@@ -57,8 +57,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		} 
 		
 		catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			
 		}
 		return false;
 	}

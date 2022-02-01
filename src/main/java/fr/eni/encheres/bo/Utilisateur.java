@@ -37,6 +37,14 @@ public class Utilisateur {
 		setAdministrateur(administrateur);
 		
 	}
+	
+	
+
+
+	public Utilisateur(String pseudo, String motDePasse) {
+		setPseudo(pseudo);
+		setMotDePasse(motDePasse);
+	}
 
 
 	public int getNoUtilisateur() {

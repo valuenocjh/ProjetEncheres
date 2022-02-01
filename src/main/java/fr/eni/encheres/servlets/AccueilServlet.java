@@ -7,30 +7,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.eni.encheres.bo.Utilisateur;
-
 /**
  * Servlet implementation class ConnexionServlet
  */
-@WebServlet("/ConnexionServlet")
-public class ConnexionServlet extends HttpServlet {
+@WebServlet("/index.html")
+public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+request.getRequestDispatcher("/WEB-INF/jsp/listedesencheresnonconnecte.jsp").forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String identifiant = request.getParameter("identifiant").trim().toLowerCase();
-		String motdepasse = request.getParameter("motdepasse").trim().toLowerCase();
-		
-		Utilisateur rechercheUtilisateur = new Utilisateur(identifiant, motdepasse);
+		// TODO Auto-generated method stub
+		/**
+		 * filtres...
+		 */
 	}
 
 }

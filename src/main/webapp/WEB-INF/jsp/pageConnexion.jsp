@@ -44,7 +44,7 @@
 			<!-- div avec le bouton créer un compte qui renvoie vers un lien pour s'inscrire-->
 			<div>
 				<button>
-					<a href="#">Créer un compte</a>
+					<a href="<%=request.getContextPath()%>/CreationprofilServlet">Créer un compte</a>
 				</button>
 			</div>
 		</div>

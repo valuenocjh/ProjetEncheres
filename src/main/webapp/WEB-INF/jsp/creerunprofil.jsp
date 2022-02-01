@@ -10,7 +10,7 @@
 <body>
  <div>
 
-<form action="creationcompte" method="post">
+<form action="<%=request.getContextPath()%>/CreationprofilServlet" method="post">
 
         <label>Pseudo: </label>
         <input type="text" name="pseudo" required>

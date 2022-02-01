@@ -25,17 +25,16 @@ public class UtilisateurManager {
         return instance;
 
     }      
-//
-//    public void addUser(String prenom,String nom, String username,String password) {
-//
-//        UserDAO ud = DAOFactory.getUserDAO();
-//
-//        User user =new User(nom, prenom, username, password);
-//
-//        ud.insert(user);
-//
-//    }
-//
+
+    public void addUser(Utilisateur utilisateur) {
+
+        UtilisateurDAO ud = DAOFactory.getUserDAO();
+
+
+        ud.insert(utilisateur);
+
+    }
+
     public boolean login(Utilisateur user) {
 
         UtilisateurDAO ud = DAOFactory.getUserDAO();

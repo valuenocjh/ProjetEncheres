@@ -38,14 +38,6 @@ public class Utilisateur {
 		
 	}
 	
-	
-
-
-	public Utilisateur(String pseudo, String motDePasse) {
-		setPseudo(pseudo);
-		setMotDePasse(motDePasse);
-	}
-
 
 	public int getNoUtilisateur() {
 		return noUtilisateur;

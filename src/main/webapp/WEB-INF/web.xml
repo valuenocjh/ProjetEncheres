@@ -7,4 +7,16 @@
 <welcome-file-list>
 <welcome-file>index.html</welcome-file>
 </welcome-file-list>
+
+<servlet>
+<servlet-name>manager</servlet-name>
+<jsp-file>/ProjetEncheres/src/main/webapp/WEB-INF/jsp/listedesencherchesconnecte.jsp</jsp-file>
+</servlet>
+
+<servlet-mapping>
+<servlet-name>manager</servlet-name>
+<url-pattern>/Connexionervlet</url-pattern>
+</servlet-mapping>
+
+
 </web-app>

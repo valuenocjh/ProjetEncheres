@@ -14,7 +14,7 @@
 		<div>
 			<div>
 				<!-- formulaire regroupant l'identifiant et le mot de passe-->
-				<form action="" method="post">
+				<form action="<%=request.getContextPath()%>/ConnexionServlet" method="post">
 					<!-- div Identifiant-->
 					<div class="id">
 						<label>Identifiant : </label> <input type="text"

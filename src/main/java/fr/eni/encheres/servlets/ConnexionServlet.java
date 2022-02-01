@@ -6,7 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 /**
@@ -30,7 +32,19 @@ request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, 
 		String identifiant = request.getParameter("identifiant").trim().toLowerCase();
 		String motdepasse = request.getParameter("motdepasse").trim().toLowerCase();
 		
-		Utilisateur rechercheUtilisateur = new Utilisateur(identifiant, motdepasse);
+		Utilisateur rechercheUtilisateur = new Utilisateur();
+		rechercheUtilisateur.setPseudo(identifiant);
+		rechercheUtilisateur.setMotDePasse(motdepasse);
+		UtilisateurManager um = UtilisateurManager.getInstance();
+		if(um.login(rechercheUtilisateur)) {
+			HttpSession session = request.getSession();
+			session.setAttribute("identifiant", identifiant);
+			response.sendRedirect(request.getContextPath()+"/Compte");
+			} else {
+				request.setAttribute("error", "numeroderreur");
+				request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+				
+			}
 	}
 
 }

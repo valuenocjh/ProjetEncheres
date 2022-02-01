@@ -1,6 +1,5 @@
 
     <!-- div pour le haut du header - Titre et connexion -->
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     <div>
         <div>
             <h3>ENI-Enchères</h3>

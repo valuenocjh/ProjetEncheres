@@ -1,5 +1,5 @@
 package fr.eni.encheres.bll;
-// testtestestse
+
 import java.sql.SQLException;
 
 import fr.eni.encheres.bo.Utilisateur;
@@ -54,6 +54,16 @@ public class UtilisateurManager {
 
 		return ud.selectByLogin(user);
 
+	}
+	
+	public Utilisateur loginInfo (Utilisateur userInfo) {
+		
+		UtilisateurDAO ud = DAOFactory.getUserDAO();
+		
+		
+		
+		return ud.selectInfo(userInfo); 
+		
 	}
 
 }

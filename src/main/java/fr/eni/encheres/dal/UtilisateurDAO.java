@@ -10,5 +10,6 @@ public interface UtilisateurDAO {
 	//ou rechercher un utilisateur dans la base
 	public void insert(Utilisateur utilisateur) throws DALException, SQLException;
 	public boolean selectByLogin(Utilisateur utilisateur)throws DALException;
-	
+	public Utilisateur selectInfo(Utilisateur utilisateur);
+
 }

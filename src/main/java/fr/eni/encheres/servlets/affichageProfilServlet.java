@@ -7,25 +7,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** 
- * Servlet appelée à l'ouveture de l'application 
- * DoGet renvoie vers la jsp listedesenecheresnonconnecte
- * DoPost va gérer l'affichage de la liste des enchères avec les filtres
+/**
+ * Servlet implementation class affichageProfilServlet
  */
-@WebServlet("/index.html")
-public class AccueilServlet extends HttpServlet {
+@WebServlet("/affichageProfilServlet")
+public class affichageProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	//le doget envoit vers la page affichageprofil
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-request.getRequestDispatcher("/WEB-INF/jsp/listedesencheresnonconnecte.jsp").forward(request, response);
-	}
+		request.getRequestDispatcher("/WEB-INF/jsp/affichageprofil.jsp").forward(request, response);
 
+	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		/**
-		 * filtres...
-		 */
+
+		doGet(request, response);
 	}
 
 }

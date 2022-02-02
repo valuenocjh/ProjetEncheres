@@ -12,6 +12,18 @@
 <h1>Eni Enchère</h1>
 <h3>Mon compte</h3>
 
+<p>Liste des enchères connecté</p>
+<p>pseudo: ${rechercheUtilisateur.pseudo}</p>
+<p>Nom : ${rechercheUtilisateur.nom}</p>
+<p>Prenom :  ${rechercheUtilisateur.prenom}</p>
+<p>email :  ${rechercheUtilisateur.email}</p>
+<p>telephone ${rechercheUtilisateur.telephone}</p>
+<p>rue ${rechercheUtilisateur.rue}</p>
+<p>code postal : ${rechercheUtilisateur.codePostal}</p>
+<p>ville : ${rechercheUtilisateur.ville}</p>
+<p>mot de passe : ${rechercheUtilisateur.motDePasse}</p>
+<p>credit : ${rechercheUtilisateur.credit}</p>
+<!-- 
 <div>
 <p><span><b>Pseudo :</b></span>AAA</p>
 </div>
@@ -49,6 +61,6 @@
 
 
 </div>
-
+ -->
 </body>
 </html>

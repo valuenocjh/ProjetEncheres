@@ -17,7 +17,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	private final static String SELECT_LOGIN = "SELECT pseudo, email, mot_de_passe FROM Utilisateurs where (pseudo = ? or email = ?)and mot_de_passe = ?;";
 	private final static String INSERT = "INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, administrateur, credit) VALUES (?, ?,?, ?, ?,?,?,?,?,0,1000);";
-
+	private final static String SELECT_INFO ="SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit	FROM Utilisateurs WHERE (pseudo = ? or email =?);";
 	@Override
 	// méthode pour insérer un utilisateur dans la base de données
 	public void insert(Utilisateur utilisateur) throws DALException, SQLException {
@@ -89,4 +89,47 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		return existeUser;
 	}
 
+	
+		public Utilisateur selectInfo (Utilisateur utilisateur) {
+			
+			// Initialisations des variables
+			Connection cnx = null;
+			PreparedStatement pstmt= null;
+			ResultSet result=null;
+			//Utilisateur user =null;
+			
+			
+			// Recuperation des attributs par la BDD
+			try {
+				cnx = ConnectionProvider.seConnecter();
+				pstmt = cnx.prepareStatement(SELECT_INFO);
+				pstmt.setString(1, utilisateur.getPseudo());
+				pstmt.setString(2, utilisateur.getEmail());
+				result = pstmt.executeQuery();
+				
+				// donner les attributs de l'utilisateur en base de données
+				// à l'utilisateur créee auparavant
+				if(result.next()) { 
+					utilisateur.setPseudo(result.getString("pseudo"));
+					utilisateur.setNom(result.getString("nom"));
+					utilisateur.setPrenom(result.getString("prenom"));
+					utilisateur.setEmail(result.getString("email"));
+					utilisateur.setTelephone(result.getString("telephone"));
+					utilisateur.setRue(result.getString("rue"));
+					utilisateur.setCodePostal(result.getString("code_postal"));
+					utilisateur.setVille(result.getString("ville"));
+					utilisateur.setCredit(result.getInt("credit"));
+
+				}
+				
+				
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}
+			
+			return utilisateur; 
+		}
+	
 }

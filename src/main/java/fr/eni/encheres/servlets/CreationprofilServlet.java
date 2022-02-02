@@ -20,14 +20,18 @@ public class CreationprofilServlet extends HttpServlet {
 
 //Servlet appelée lors de l'appuie sur le bouton créer un compte de la jsp 
 //pageconnexion
+
 //DoGet appelle la jsp creerMonProfil
-//DoPost va traiter le formulaire de la page creerMonProfil
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp").forward(request, response);
 
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	// DoPost va traiter le formulaire de la page creerMonProfil
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		String identifiant = request.getParameter("pseudo").trim().toLowerCase();
 		String nom = request.getParameter("nom").trim().toLowerCase();
@@ -40,34 +44,31 @@ public class CreationprofilServlet extends HttpServlet {
 		String motdepasse = request.getParameter("motdepasse").trim().toLowerCase();
 		String confirmation = request.getParameter("confirmation").trim().toLowerCase();
 // penser à gérer si les mots de passe sont différents.
-		
-		
+
 		Utilisateur nouvelutilisateur = new Utilisateur();
-			nouvelutilisateur.setPseudo(identifiant);
-			nouvelutilisateur.setNom(nom);
-			nouvelutilisateur.setPrenom(prenom);
-			nouvelutilisateur.setEmail(email);
-			nouvelutilisateur.setTelephone(telephone);
-			nouvelutilisateur.setRue(rue);
-			nouvelutilisateur.setCodePostal(codepostal);
-			nouvelutilisateur.setVille(ville);
-			nouvelutilisateur.setMotDePasse(motdepasse);
-			
+		nouvelutilisateur.setPseudo(identifiant);
+		nouvelutilisateur.setNom(nom);
+		nouvelutilisateur.setPrenom(prenom);
+		nouvelutilisateur.setEmail(email);
+		nouvelutilisateur.setTelephone(telephone);
+		nouvelutilisateur.setRue(rue);
+		nouvelutilisateur.setCodePostal(codepostal);
+		nouvelutilisateur.setVille(ville);
+		nouvelutilisateur.setMotDePasse(motdepasse);
+
 		UtilisateurManager um = UtilisateurManager.getInstance();
 
-			try {
-				um.addUser(nouvelutilisateur);
-				if(!um.login(nouvelutilisateur)) {
-					
-				} else {
-					request.setAttribute("error", "numeroderreur");
-					request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
-					
-				}
-			} catch (SQLException | DALException e) {
-System.out.println("test");
+		try {
+			um.addUser(nouvelutilisateur);
+			if (!um.login(nouvelutilisateur)) {
+
+			} else {
+				request.setAttribute("error", "numeroderreur");
+				request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+
 			}
+		} catch (SQLException | DALException e) {
+			System.out.println("test");
+		}
 	}
-	}
-
-
+}

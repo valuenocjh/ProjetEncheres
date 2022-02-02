@@ -20,12 +20,15 @@ public class ConnectionProvider {
 			context = new InitialContext();
 			datasource = (DataSource) context.lookup("java:comp/env/jdbc/cnx_pool");
 		} catch (NamingException e) {
+			System.err.println("datasource non référencée dans l'annuaire du serveur Tomcat");
 			e.printStackTrace();
 		}
 	}
 	
 	public static Connection seConnecter() throws SQLException {
-		return datasource.getConnection();
+		Connection cnx = null;
+		cnx = datasource.getConnection();
+		return cnx;
 	}
 	
 	public static void seDeconnecter(Connection cnx) {

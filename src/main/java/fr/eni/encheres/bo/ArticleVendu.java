@@ -4,6 +4,9 @@ import java.util.Date;
 
 public class ArticleVendu {
 
+	/**
+	 * Declaration des variables de la class ArticleVendu
+	 */
 	private int noArticle;
 	private String nomArticle;
 	private String description;
@@ -14,12 +17,12 @@ public class ArticleVendu {
 	private Utilisateur utilisateur;
 	private Categorie categorie;
 	
-	
+	//Constructeur vide
 	public ArticleVendu(){
 		
 	}
 
-
+	//Constructeur surchargé
 	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
 			Date dateFinEncheres, int prixInitial, int prixVente, Utilisateur utilisateur, Categorie categorie) {
 		setNoArticle(noArticle);
@@ -33,6 +36,8 @@ public class ArticleVendu {
 		setCategorie(categorie);
 	}
 
+	//Accesseurs - Mutateurs
+	
 	public int getNoArticle() {
 		return noArticle;
 	}

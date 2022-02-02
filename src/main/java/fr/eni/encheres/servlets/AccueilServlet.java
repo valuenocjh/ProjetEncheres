@@ -7,8 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ConnexionServlet
+/** 
+ * Servlet appelée à l'ouveture de l'application 
+ * DoGet renvoie vers la jsp listedesenecheresnonconnecte
+ * DoPost va gérer l'affichage de la liste des enchères avec les filtres
  */
 @WebServlet("/index.html")
 public class AccueilServlet extends HttpServlet {

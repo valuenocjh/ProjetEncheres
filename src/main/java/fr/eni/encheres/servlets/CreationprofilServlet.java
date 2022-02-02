@@ -1,6 +1,8 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,7 +17,10 @@ import fr.eni.encheres.bo.Utilisateur;
 public class CreationprofilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-
+//Servlet appelée lors de l'appuie sur le bouton créer un compte de la jsp 
+//pageconnexion
+//DoGet appelle la jsp creerMonProfil
+//DoPost va traiter le formulaire de la page creerMonProfil
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp").forward(request, response);
 
@@ -48,7 +53,11 @@ public class CreationprofilServlet extends HttpServlet {
 			nouvelutilisateur.setMotDePasse(motdepasse);
 			
 		UtilisateurManager um = UtilisateurManager.getInstance();
-		um.addUser(nouvelutilisateur);
+		try {
+			um.addUser(nouvelutilisateur);
+		} catch (SQLException e) {
+			System.out.println(e.getCause());
+		}
 		
 		if(!um.login(nouvelutilisateur)) {
 			

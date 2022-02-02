@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.dal.DALException;
 
 @WebServlet("/CreationprofilServlet")
 public class CreationprofilServlet extends HttpServlet {
@@ -53,18 +54,18 @@ public class CreationprofilServlet extends HttpServlet {
 			nouvelutilisateur.setMotDePasse(motdepasse);
 			
 		UtilisateurManager um = UtilisateurManager.getInstance();
-		try {
-			um.addUser(nouvelutilisateur);
-		} catch (SQLException e) {
-			System.out.println(e.getCause());
-		}
-		
-		if(!um.login(nouvelutilisateur)) {
-			
-			} else {
-				request.setAttribute("error", "numeroderreur");
-				request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
-				
+
+			try {
+				um.addUser(nouvelutilisateur);
+				if(!um.login(nouvelutilisateur)) {
+					
+				} else {
+					request.setAttribute("error", "numeroderreur");
+					request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+					
+				}
+			} catch (SQLException | DALException e) {
+System.out.println("test");
 			}
 	}
 	}

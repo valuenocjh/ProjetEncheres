@@ -3,6 +3,7 @@ package fr.eni.encheres.bll;
 import java.sql.SQLException;
 
 import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
 
@@ -31,8 +32,9 @@ public class UtilisateurManager {
 	 * Créer un objet UtilisateurDAO grâce à la DAOFactory
 	 * @param utilisateur
 	 * @throws SQLException
+	 * @throws DALException 
 	 */
-	public void addUser(Utilisateur utilisateur) throws SQLException {
+	public void addUser(Utilisateur utilisateur) throws SQLException, DALException {
 
 		UtilisateurDAO ud = DAOFactory.getUserDAO();
 
@@ -44,8 +46,9 @@ public class UtilisateurManager {
 	 * Renvoie un boolean si l'utilisateur existe déjà en BDD
 	 * @param user
 	 * @return
+	 * @throws DALException 
 	 */
-	public boolean login(Utilisateur user) {
+	public boolean login(Utilisateur user) throws DALException {
 
 		UtilisateurDAO ud = DAOFactory.getUserDAO();
 

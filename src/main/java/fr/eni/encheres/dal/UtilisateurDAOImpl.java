@@ -20,7 +20,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 
 	@Override
 	// méthode pour insérer un utilisateur dans la base de données
-	public void insert(Utilisateur utilisateur) throws SQLException {
+	public void insert(Utilisateur utilisateur) throws DALException, SQLException {
 		Connection cnx = ConnectionProvider.seConnecter();
 		PreparedStatement stmt = cnx.prepareStatement(INSERT);
 
@@ -37,8 +37,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			stmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO gestion des erreurs
-			System.out.println(e.getCause());
+			throw new DALException("probleme methode insert", e);
 		} finally {
 			ConnectionProvider.seDeconnecter(cnx, stmt);
 		}
@@ -48,7 +47,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	 * méthode pour vérifier si un utilisateur existe pour se connecter soit par
 	 * identifiant, soit par email
 	 */
-	public boolean selectByLogin(Utilisateur utilisateur) {
+	public boolean selectByLogin(Utilisateur utilisateur) throws DALException {
 		Connection cnx = null;
 		PreparedStatement stmt= null;
 		ResultSet result=null;
@@ -85,8 +84,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 
 		catch (SQLException e) {
-				//leve d'exception DALException
-System.out.println(e.getCause());			
+			throw new DALException("Erreur dans la méthode SelectByLogin", e);
 		}
 		return existeUser;
 	}

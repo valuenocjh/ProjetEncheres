@@ -1,6 +1,8 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
+import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +45,11 @@ public class VendreArticleServlet extends HttpServlet {
 			nouvelleCategorie.setLibelle("Sport et Loisir");
 			break;
 		}
-		// int miseAPrix = request.getParameter("");
+		int miseAPrix = Integer.parseInt(request.getParameter("miseaprix"));
+		
+		//TODO  voir pour la date
+	//	Date dateDebutEnchere = request.getParameter("debutenchere");
+		
 
 	}
 

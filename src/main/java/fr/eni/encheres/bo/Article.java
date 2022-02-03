@@ -2,7 +2,7 @@ package fr.eni.encheres.bo;
 
 import java.util.Date;
 
-public class ArticleVendu {
+public class Article {
 
 	/**
 	 * Declaration des variables de la class ArticleVendu
@@ -18,12 +18,12 @@ public class ArticleVendu {
 	private Categorie categorie;
 	
 	//Constructeur vide
-	public ArticleVendu(){
+	public Article(){
 		
 	}
 
 	//Constructeur surchargé
-	public ArticleVendu(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
+	public Article(int noArticle, String nomArticle, String description, Date dateDebutEncheres,
 			Date dateFinEncheres, int prixInitial, int prixVente, Utilisateur utilisateur, Categorie categorie) {
 		setNoArticle(noArticle);
 		setNomArticle(nomArticle);
@@ -36,8 +36,6 @@ public class ArticleVendu {
 		setCategorie(categorie);
 	}
 
-	//Accesseurs - Mutateurs
-	
 	public int getNoArticle() {
 		return noArticle;
 	}
@@ -109,5 +107,7 @@ public class ArticleVendu {
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
+
+	//Accesseurs - Mutateurs
 	
 }

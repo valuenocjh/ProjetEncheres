@@ -6,14 +6,14 @@ public class Retrait {
 	private String rue;
 	private String codePostal;
 	private String ville;
-	private ArticleVendu article;
+	private Article article;
 
 	//constructeur vide
 	public Retrait() {
 	}
 
 	//constructeur surchargé
-	public Retrait(String rue, String codePostal, String ville, ArticleVendu article) {
+	public Retrait(String rue, String codePostal, String ville, Article article) {
 		setRue(rue);
 		setCodePostal(codePostal);
 		setVille(ville);
@@ -47,11 +47,11 @@ public class Retrait {
 		this.ville = ville;
 	}
 
-	public ArticleVendu getArticle() {
+	public Article getArticle() {
 		return article;
 	}
 
-	public void setArticle(ArticleVendu article) {
+	public void setArticle(Article article) {
 		this.article = article;
 	}
 

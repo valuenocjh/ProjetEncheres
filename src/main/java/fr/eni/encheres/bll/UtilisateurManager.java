@@ -17,6 +17,7 @@ public class UtilisateurManager {
  * Créer une instance d'UtilisateurManager si il en existe pas déjà une
  * @return
  */
+	
 	public static UtilisateurManager getInstance() {
 
 		if (instance == null) {

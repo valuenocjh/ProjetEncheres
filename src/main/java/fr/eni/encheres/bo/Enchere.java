@@ -7,7 +7,7 @@ public class Enchere {
 	//Declaration des variables
 	private Date dateEnchere;
 	private int montantEnchere;
-	private ArticleVendu article;
+	private Article article;
 	private Utilisateur utilisateur;
 
 	//Constructeur vide
@@ -16,7 +16,7 @@ public class Enchere {
 	}
 
 	//Constructeur surchargé
-	public Enchere(Date dateEnchere, int montantEnchere, ArticleVendu article, Utilisateur utilisateur) {
+	public Enchere(Date dateEnchere, int montantEnchere, Article article, Utilisateur utilisateur) {
 
 		setDateEnchere(dateEnchere);
 		setMontantEnchere(montantEnchere);
@@ -42,11 +42,11 @@ public class Enchere {
 		this.montantEnchere = montantEnchere;
 	}
 
-	public ArticleVendu getArticle() {
+	public Article getArticle() {
 		return article;
 	}
 
-	public void setArticle(ArticleVendu article) {
+	public void setArticle(Article article) {
 		this.article = article;
 	}
 

@@ -37,6 +37,7 @@ public class ConnectionProvider {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	
 	public static void seDeconnecter(Connection cnx, PreparedStatement pstmt) {

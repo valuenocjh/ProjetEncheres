@@ -1,6 +1,9 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,7 +53,7 @@ public class ConnexionServlet extends HttpServlet {
 
 		rechercheUtilisateur.setMotDePasse(motdepasse);
 		UtilisateurManager um = UtilisateurManager.getInstance();
-
+		PrintWriter out = response.getWriter();
 		// vérifie si il existe déja une session sur ce compte
 		// debut
 		try {
@@ -64,11 +67,15 @@ public class ConnexionServlet extends HttpServlet {
 
 			} else {
 				// si une session existe déja, il renvoit vers la page de connexion
-
+				//System.out.println("Erreur connexion");
+				out.print("<p style=\"color:red\">Authentification incorrecte</p>");    
+		        RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp");    
+		        rd.include(request,response);   
 				request.setAttribute("error", "numeroderreur");
-				request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
-
+				//request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+				
 			}
+			
 		} catch (DALException e) {
 
 		}

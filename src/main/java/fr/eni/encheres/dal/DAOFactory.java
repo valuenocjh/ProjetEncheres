@@ -10,4 +10,8 @@ public class DAOFactory {
 	public static ArticleDAO getArticleDAO() {
 		return new ArticleDAOImpl();
 	}
+	
+	public static EnchereDAO getEnchereDAO() {
+		return new EnchereDAOImpl();
+	}
 	}

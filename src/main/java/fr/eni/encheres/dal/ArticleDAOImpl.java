@@ -14,13 +14,15 @@ public class ArticleDAOImpl implements ArticleDAO {
 
 	@Override
 	public void insertArticle(Article article) {
+		//créer une connexion ainsi qu'un PreparedStatement qu'on initialise à null
 		Connection cnx = null;
 		PreparedStatement stmt = null;
+		//déclarer la date de début et de fin des encheres
 		Date debEncheres =  new java.sql.Date(article.getDateDebutEncheres().getTime());
 		Date finEncheres =  new java.sql.Date(article.getDateFinEncheres().getTime());
 		try {
-			
 			cnx = ConnectionProvider.seConnecter();
+			//appeler la requete sql
 			stmt = cnx.prepareStatement(INSERT);
 			stmt.setString(1, article.getNomArticle());
 			stmt.setString(2, article.getDescription());

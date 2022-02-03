@@ -3,6 +3,7 @@ package fr.eni.encheres.servlets;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,6 +41,7 @@ public class ModificationprofilServlet extends HttpServlet {
 //			//si null delegation à la page de connexion
 //			getServletContext().getRequestDispatcher("/ConnexionServlet?get=1").forward(request, response);
 //		}
+		Utilisateur userAModifier = (Utilisateur) request.getSession().getAttribute("rechercheUtilisateur");
 				
 		// créer un utilisateur avec les informations entrées dans le formulaire
 		Utilisateur UtilisateurModification = new Utilisateur();
@@ -52,19 +54,29 @@ public class ModificationprofilServlet extends HttpServlet {
 		UtilisateurModification.setRue(request.getParameter("rue").trim().toLowerCase());
 		UtilisateurModification.setCodePostal(request.getParameter("codepostal").trim());
 		UtilisateurModification.setVille(request.getParameter("ville").trim().toLowerCase());
-		
+		UtilisateurModification.setMotDePasse(request.getParameter("nouveaumotdepasse"));
+		PrintWriter out = response.getWriter();
+
+		if(UtilisateurModification.getPseudo().matches("\\p{Alnum}+") & request.getParameter("nouveaumotdepasse").equals(request.getParameter("confirmation")) & request.getParameter("motdepasse").equals(userAModifier.getMotDePasse())) {
 		//appel de la bll pour créer un utilisateurManager nommé um
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		
-		Utilisateur userAModifier = (Utilisateur) request.getSession().getAttribute("rechercheUtilisateur");
 		
 		// appel de la méthode modifieruser de la bll
 		um.modifierUser(UtilisateurModification, userAModifier);
 		
 		HttpSession session = request.getSession();
+		session.setAttribute("rechercheUtilisateur", UtilisateurModification);
+		userAModifier.setPseudo(request.getParameter("pseudo").trim().toLowerCase());
+
 		request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
 		
-		
+	}else {
+		System.out.println("caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé");
+		out.print("<p style=\"color:red\">caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé</p>");    
+        RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/modificationprofil.jsp");    
+        rd.include(request,response);
+		//request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
 	}
-
+	}
 }

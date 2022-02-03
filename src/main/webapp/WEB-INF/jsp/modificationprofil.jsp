@@ -11,38 +11,39 @@
 
 <h1>Eni Enchère</h1>
 <h3>Mon compte</h3>
-
+<h4>${profil.pseudo}</h4>
+<h4>Ancien : ${profil.motDePasse}</h4>
+${rechercheUtilisateur.motDePasse}
 <p>Liste des enchères connecté</p>
 
 
  
 
-    <form action="<%=request.getContextPath()%>/modificationprofil" method="post">
+    <form action="<%=request.getContextPath()%>/ModificationprofilServlet" method="post">
 <div>
         <label>Pseudo: </label>
-        <input type="text" name="pseudo" required>
+        <input type="text" name="pseudo" value="${rechercheUtilisateur.pseudo}" required>
         
         <label>Nom: </label>
-        <input type="text" name="nom" required> 
+        <input type="text" name="nom" value="${rechercheUtilisateur.nom}" required> 
 
         <label>Prénom: </label>
-        <input type="text" name="prenom" required> 
-
+        <input type="text" name="prenom" value="${rechercheUtilisateur.prenom}" required> 
         
         <label>Email: </label>
-        <input type="email" name="email" required> 
+        <input type="email" name="email" value="${rechercheUtilisateur.email}" required> 
 
         <label>Téléphone: </label>
-        <input type="tel" name="telephone"> 
+        <input type="tel" name="telephone"  value="${rechercheUtilisateur.telephone}"> 
 
         <label>Rue: </label>
-        <input type="text" name="rue" required> 
+        <input type="text" name="rue"  value="${rechercheUtilisateur.rue}" required> 
 
         <label>Code postal: </label>
-        <input type="number" name="codepostal" required> 
+        <input type="number" name="codepostal"  value="${rechercheUtilisateur.codePostal}" required> 
 
         <label>Ville: </label>
-        <input type="text" name="ville" required> 
+        <input type="text" name="ville"  value="${rechercheUtilisateur.ville}" required> 
 
         <label>Mot de passe actuel: </label>
         <input type="password" name="motdepasse" required> 

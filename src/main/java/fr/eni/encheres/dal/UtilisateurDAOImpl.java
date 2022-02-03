@@ -20,7 +20,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final static String SELECT_LOGIN = "SELECT pseudo, email, mot_de_passe FROM Utilisateurs where (pseudo = ? or email = ?)and mot_de_passe = ?;";
 	private final static String INSERT = "INSERT INTO Utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, administrateur, credit) VALUES (?, ?,?, ?, ?,?,?,?,?,0,1000);";
 	private final static String SELECT_INFO ="SELECT pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit	FROM Utilisateurs WHERE (pseudo = ? or email =?);";
-	private final static String MODIFIER_PROFIL="UPDATE Utilisateurs SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ? ,code_postal = ?, ville = ? WHERE pseudo = ?;";
+	private final static String MODIFIER_PROFIL="UPDATE Utilisateurs SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ? ,code_postal = ?, ville = ?, mot_de_passe = ? WHERE pseudo = ?;";
 	
 	@Override
 	// méthode pour insérer un utilisateur dans la base de données
@@ -139,7 +139,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		public void modifierProfil(Utilisateur utilisateur, Utilisateur userAModifier) {
 			Connection cnx = null;
 			PreparedStatement pstmt = null;
-			System.out.println(userAModifier.getPseudo());
 			try {
 				cnx = ConnectionProvider.seConnecter();
 				pstmt = cnx.prepareStatement(MODIFIER_PROFIL);
@@ -151,11 +150,9 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 				pstmt.setString(6, utilisateur.getRue());
 				pstmt.setString(7, utilisateur.getCodePostal());
 				pstmt.setString(8, utilisateur.getVille());
-				pstmt.setString(9, userAModifier.getPseudo());
-				pstmt.executeQuery();
-				
-				System.out.println("utilisateur" + utilisateur.getPseudo()+ utilisateur.getNom()+utilisateur.getRue());
-				System.out.println("useramodifier" + userAModifier.getPseudo()+ userAModifier.getNom()+userAModifier.getRue());
+				pstmt.setString(9, utilisateur.getMotDePasse());
+				pstmt.setString(10, userAModifier.getPseudo());
+				pstmt.executeUpdate();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

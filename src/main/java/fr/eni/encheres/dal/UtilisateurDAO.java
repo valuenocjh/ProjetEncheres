@@ -11,5 +11,6 @@ public interface UtilisateurDAO {
 	public void insert(Utilisateur utilisateur) throws DALException, SQLException;
 	public boolean selectByLogin(Utilisateur utilisateur)throws DALException;
 	public Utilisateur selectInfo(Utilisateur utilisateur);
+	public void modifierProfil(Utilisateur utilisateur, Utilisateur userUtilisateur);
 
 }

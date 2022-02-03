@@ -36,7 +36,11 @@ public class ConnexionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
+		//je teste si dans la chaine d'interrogation j'ai un parametre
+//		if (request.getParameter("get").equalsIgnoreCase("1")) {
+//			doGet(request, response);
+//		}
+		
 		// Récupération des identifiants et mot de passe
 		String identifiant = request.getParameter("identifiant").trim().toLowerCase();
 		String motdepasse = request.getParameter("motdepasse").trim().toLowerCase();

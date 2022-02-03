@@ -16,7 +16,7 @@ public class affichageProfilServlet extends HttpServlet {
 
 	//le doget envoit vers la page affichageprofil
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/affichageprofil.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/affichagemonprofil.jsp").forward(request, response);
 
 	}
 

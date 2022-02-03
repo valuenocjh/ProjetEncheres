@@ -21,44 +21,9 @@
 <p>rue ${rechercheUtilisateur.rue}</p>
 <p>code postal : ${rechercheUtilisateur.codePostal}</p>
 <p>ville : ${rechercheUtilisateur.ville}</p>
-<p>mot de passe : ${rechercheUtilisateur.motDePasse}</p>
 <p>credit : ${rechercheUtilisateur.credit}</p>
-<!-- 
-<div>
-<p><span><b>Pseudo :</b></span>AAA</p>
-</div>
 
-<div>
-<p><span><b>Nom :</b></span>AAA</p>
-</div>
-
-<div>
-<p><span><b>Prénom :</b></span>AAA</p>
-</div>
-
-<div>
-<p><span><b>Email :</b></span>AAA</p>
-</div>
-
-<div>
-<p><span><b>Téléphone :</b></span>AAA</p>
-</div>
-
-<div>
-<p><span><b>Rue :</b></span>AAA</p>
-</div>
-
-<div>
-<p><span><b>Code Postal :</b></span>AAA</p>
-</div>
-
-<div>
-<p><span><b>Ville :</b></span>AAA</p>
-</div>
-
-<a href="#">Modifier</a>
-
-
+<!-- bouton retour -->
 
 </div>
  -->

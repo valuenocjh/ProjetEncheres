@@ -59,11 +59,12 @@ public class UtilisateurManager {
 	public Utilisateur loginInfo (Utilisateur userInfo) {
 		
 		UtilisateurDAO ud = DAOFactory.getUserDAO();
-		
-		
-		
 		return ud.selectInfo(userInfo); 
-		
 	}
 
+	public void modifierUser(Utilisateur user, Utilisateur userAModifier) {
+		//appeler la methode private validerUser() méthode a créer pour valider les contraintes de l'user
+		UtilisateurDAO ud = DAOFactory.getUserDAO();
+		ud.modifierProfil(user, userAModifier);
+	}
 }

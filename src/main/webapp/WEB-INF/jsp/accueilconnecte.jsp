@@ -8,7 +8,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="<%=request.getContextPath()%>/affichageProfilServlet">Mon profil</a>
+<a href="<%=request.getContextPath()%>/VendreArticleServlet">Vendre un article</a>
+<a href="<%=request.getContextPath()%>/AffichageProfilServlet">Mon profil</a>
 <%@include file="header.jsp" %>
     <main>
     <!-- div contenant le formulaire -->

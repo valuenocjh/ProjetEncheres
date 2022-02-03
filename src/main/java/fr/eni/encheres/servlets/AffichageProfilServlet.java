@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class affichageProfilServlet
  */
-@WebServlet("/affichageProfilServlet")
-public class affichageProfilServlet extends HttpServlet {
+@WebServlet("/AffichageProfilServlet")
+public class AffichageProfilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	//le doget envoit vers la page affichageprofil
@@ -22,8 +22,7 @@ public class affichageProfilServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-		doGet(request, response);
+		
 	}
 
 }

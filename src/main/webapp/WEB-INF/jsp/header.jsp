@@ -10,6 +10,7 @@
                 <ul>
                     <li>S'inscrire</li>
                     <li><a href="<%=request.getContextPath()%>/ConnexionServlet">Se connecter</a> </li>
+                    <li><a href="<%=request.getContextPath()%>/DeconnexionServlet">Déconnexion</a></li>
                 </ul>
             </nav>
         </div>

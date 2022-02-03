@@ -1,8 +1,10 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +45,8 @@ public class CreationprofilServlet extends HttpServlet {
 		String ville = request.getParameter("ville").trim().toLowerCase();
 		String motdepasse = request.getParameter("motdepasse").trim().toLowerCase();
 		String confirmation = request.getParameter("confirmation").trim().toLowerCase();
-		
+		PrintWriter out = response.getWriter();
+
 // penser à gérer si les mots de passe sont différents et pseudo en alphanumerique
 
 		if ( identifiant.matches("\\p{Alnum}+") & confirmation.equals(motdepasse)) {
@@ -74,8 +77,11 @@ public class CreationprofilServlet extends HttpServlet {
 					request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
 					
 				} else {
+					out.print("<p style=\"color:red\">caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé</p>");    
+			        RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp");    
+			        rd.include(request,response);
 					request.setAttribute("error", "numeroderreur");
-					request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+					//request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
 					
 				}
 			} catch (SQLException | DALException e) {
@@ -83,7 +89,10 @@ public class CreationprofilServlet extends HttpServlet {
 			}
 		} else {
 			System.out.println("caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé");
-			request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+			out.print("<p style=\"color:red\">caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé</p>");    
+	        RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp");    
+	        rd.include(request,response);
+			//request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
 		}
 	}
 

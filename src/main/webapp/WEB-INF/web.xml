@@ -10,7 +10,7 @@
 
 <servlet>
 <servlet-name>manager</servlet-name>
-<jsp-file>/ProjetEncheres/src/main/webapp/WEB-INF/jsp/listedesencherchesconnecte.jsp</jsp-file>
+<jsp-file>/ProjetEncheres/src/main/webapp/WEB-INF/jsp/accueilnonconnecte.jsp</jsp-file>
 </servlet>
 
 <servlet-mapping>

@@ -43,32 +43,48 @@ public class CreationprofilServlet extends HttpServlet {
 		String ville = request.getParameter("ville").trim().toLowerCase();
 		String motdepasse = request.getParameter("motdepasse").trim().toLowerCase();
 		String confirmation = request.getParameter("confirmation").trim().toLowerCase();
-// penser à gérer si les mots de passe sont différents.
 
-		Utilisateur nouvelutilisateur = new Utilisateur();
-		nouvelutilisateur.setPseudo(identifiant);
-		nouvelutilisateur.setNom(nom);
-		nouvelutilisateur.setPrenom(prenom);
-		nouvelutilisateur.setEmail(email);
-		nouvelutilisateur.setTelephone(telephone);
-		nouvelutilisateur.setRue(rue);
-		nouvelutilisateur.setCodePostal(codepostal);
-		nouvelutilisateur.setVille(ville);
-		nouvelutilisateur.setMotDePasse(motdepasse);
+// penser à gérer si les mots de passe sont différents et pseudo en alphanumerique
 
-		UtilisateurManager um = UtilisateurManager.getInstance();
+		if (identifiant.matches("\\p{Alnum}")) {
+			if (confirmation.equals(motdepasse)) {
 
-		try {
-			um.addUser(nouvelutilisateur);
-			if (!um.login(nouvelutilisateur)) {
+				Utilisateur nouvelutilisateur = new Utilisateur();
+				nouvelutilisateur.setPseudo(identifiant);
+				nouvelutilisateur.setNom(nom);
+				nouvelutilisateur.setPrenom(prenom);
+				nouvelutilisateur.setEmail(email);
+				nouvelutilisateur.setTelephone(telephone);
+				nouvelutilisateur.setRue(rue);
+				nouvelutilisateur.setCodePostal(codepostal);
+				nouvelutilisateur.setVille(ville);
+				nouvelutilisateur.setMotDePasse(motdepasse);
 
+				UtilisateurManager um = UtilisateurManager.getInstance();
+
+				try {
+					if (!um.login(nouvelutilisateur)) {
+
+						um.addUser(nouvelutilisateur);
+						// créer une session et ouvrir la page listedesencheresconnecte
+						HttpSession session = request.getSession();
+						Utilisateur user = um.loginInfo(nouvelutilisateur);
+						session.setAttribute("rechercheUtilisateur", user);
+
+						request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
+
+					} else {
+						request.setAttribute("error", "numeroderreur");
+						request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+
+					}
+				} catch (SQLException | DALException e) {
+					System.out.println("erreur");
+				}
 			} else {
-				request.setAttribute("error", "numeroderreur");
+				System.out.println("caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé");
 				request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
-
 			}
-		} catch (SQLException | DALException e) {
-			System.out.println("test");
 		}
 	}
 }

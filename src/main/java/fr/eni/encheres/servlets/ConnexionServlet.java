@@ -56,19 +56,20 @@ public class ConnexionServlet extends HttpServlet {
 		try {
 			if (um.login(rechercheUtilisateur)) {
 				HttpSession session = request.getSession();
+				// durée de vie de la session à 5 minutes
+				session.setMaxInactiveInterval(300);
 				Utilisateur user = um.loginInfo(rechercheUtilisateur);
 				session.setAttribute("rechercheUtilisateur", user);
 				response.sendRedirect(request.getContextPath() + "/Compte");
 
 			} else {
 				// si une session existe déja, il renvoit vers la page de connexion
-				
+
 				request.setAttribute("error", "numeroderreur");
 				request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
 
 			}
 		} catch (DALException e) {
-			
 
 		}
 	}

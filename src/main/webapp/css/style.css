@@ -68,10 +68,19 @@
     justify-content: center;
     margin-top: 15vh;
     border-style: double;
-    margin-left: 20vw;
-    margin-right: 20vw;
-    padding-top: 3vh;
-    padding-bottom: 3vh;
+    margin-left: 30vw;
+    margin-right: 30vw;
+    padding-top: 4vh;
+    padding-bottom: 4vh;
+}
+.id {
+	margin-bottom:10px;
+}
+.password {
+	margin-bottom:10px;
+}
+.btnConnexion {
+	margin-bottom:10px;
 }
 
 /*page creation de compte */

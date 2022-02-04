@@ -97,11 +97,14 @@ body {
 }
 
 .titre {
+	text-align:center;
 	margin-top:12vh;
 	margin-bottom:5vh
 }
 
 .profil {
-	text-align:center;
-	width:30vw;
+    display: flex;
+    text-align: left;
+    gap: 2vw;
+    justify-content: center;
 }

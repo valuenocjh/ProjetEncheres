@@ -2,7 +2,7 @@
    <div class="headercomplet">
     <div class="headertop">
         <div>
-            <h3>ENI-Enchères</h3>
+            <h3><a href="<%=request.getContextPath()%>/index.html">ENI Encheres</a></h3>
         </div>
     
 

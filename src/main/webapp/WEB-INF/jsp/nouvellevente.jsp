@@ -47,15 +47,15 @@
             <div style="border:solid">
                 <div id="rue">
                     <label>Rue : </label>
-                    <input type="text" name="rue" required/>
+                    <input type="text" name="rue" value="${rechercheUtilisateur.rue}"required/>
                 </div>
                 <div id="codepostal">
                     <label>Code postal : </label>
-                    <input type="number" name="codepostal" required/> 
+                    <input type="number" name="codepostal" value="${rechercheUtilisateur.codePostal}"required/> 
                 </div>
                 <div id="ville">
                     <label>Ville : </label>
-                    <input type="text" name="ville" required/>
+                    <input type="text" name="ville" value="${rechercheUtilisateur.ville}"required/>
                 </div>
             </div>
         </form>

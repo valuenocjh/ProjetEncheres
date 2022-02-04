@@ -33,7 +33,7 @@ public class VendreArticleServlet extends HttpServlet {
 		Categorie nouvelleCategorie = new Categorie();
 		switch (categorie) {
 		case "0":
-			nouvelleCategorie.setLibelle("informatique");
+			nouvelleCategorie.setLibelle("Informatique");
 			break;
 		case "1":
 			nouvelleCategorie.setLibelle("Ameublement");
@@ -45,8 +45,9 @@ public class VendreArticleServlet extends HttpServlet {
 			nouvelleCategorie.setLibelle("Sport et Loisir");
 			break;
 		}
+		if(request.getParameter("miseaprix").matches("\\d+")) {
 		int miseAPrix = Integer.parseInt(request.getParameter("miseaprix"));
-		
+		}
 		//TODO  voir pour la date
 	//	Date dateDebutEnchere = request.getParameter("debutenchere");
 		

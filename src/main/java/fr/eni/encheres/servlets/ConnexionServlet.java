@@ -36,10 +36,6 @@ public class ConnexionServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		//je teste si dans la chaine d'interrogation j'ai un parametre
-//		if (request.getParameter("get").equalsIgnoreCase("1")) {
-//			doGet(request, response);
-//		}
 		
 		// Récupération des identifiants et mot de passe
 		String identifiant = request.getParameter("identifiant").trim().toLowerCase();
@@ -64,7 +60,7 @@ public class ConnexionServlet extends HttpServlet {
 			if (um.login(rechercheUtilisateur)) {
 				HttpSession session = request.getSession();
 				// durée de vie de la session à 5 minutes
-				session.setMaxInactiveInterval(300);
+				session.setMaxInactiveInterval(10);
 				Utilisateur user = um.loginInfo(rechercheUtilisateur);
 				session.setAttribute("rechercheUtilisateur", user);
 				response.sendRedirect(request.getContextPath() + "/Compte");

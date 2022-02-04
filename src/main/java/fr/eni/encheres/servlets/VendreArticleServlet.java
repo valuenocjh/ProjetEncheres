@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Utilisateur;
 
 @WebServlet("/VendreArticleServlet")
 public class VendreArticleServlet extends HttpServlet {
@@ -28,6 +30,15 @@ public class VendreArticleServlet extends HttpServlet {
 
 		String article = request.getParameter("article").trim();
 		String description = request.getParameter("descritpion").trim();
+		//TODO  voir pour la date
+		//Date dateDebutEnchere = request.getParameter("debutenchere");
+		//Date dateFinEnchere = request.getParameter("finenchere");
+		
+		if(request.getParameter("miseaprix").matches("\\d+")) {
+		int miseAPrix = Integer.parseInt(request.getParameter("miseaprix"));
+		}
+		
+		Utilisateur utilisateur = (Utilisateur) request.getSession().getAttribute("rechercheUtilisateur");
 		String categorie = request.getParameter("categorie");
 		// Switch case selon la catégorie choisie
 		Categorie nouvelleCategorie = new Categorie();
@@ -45,13 +56,9 @@ public class VendreArticleServlet extends HttpServlet {
 			nouvelleCategorie.setLibelle("Sport et Loisir");
 			break;
 		}
-		if(request.getParameter("miseaprix").matches("\\d+")) {
-		int miseAPrix = Integer.parseInt(request.getParameter("miseaprix"));
-		}
-		//TODO  voir pour la date
-	//	Date dateDebutEnchere = request.getParameter("debutenchere");
 		
-
+		
+		ArticleManager am = ArticleManager.getInstance();
 	}
 
 }

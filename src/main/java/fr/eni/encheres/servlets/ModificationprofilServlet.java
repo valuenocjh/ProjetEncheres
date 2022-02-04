@@ -22,10 +22,10 @@ public class ModificationprofilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		// je tente  de recuperer mon utilisateur connecte en session
-		if (request.getSession().getAttribute("rechercheUtilisateur") == null) {
-			//si null, delegation à la page de connexion
-			getServletContext().getRequestDispatcher("/ConnexionServlet").forward(request, response);
-		}
+		if (request.getSession().getAttribute("rechercheUtilisateur")==null) {
+			  //si null delegation à la page de connexion
+			  request.getRequestDispatcher("/ConnexionServlet").forward(request, response);
+			}
 		// creation d'un utilisateur avec les informations de l'utilisateur en session
 		Utilisateur userAModifier = (Utilisateur) request.getSession().getAttribute("rechercheUtilisateur");
 		
@@ -36,14 +36,7 @@ public class ModificationprofilServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		/** !!!!! CODE DE THIERRY A VERIFIER !!!!!
-		 * je tente  de recuperer mon utilisateur connecte en session
-		 * if (request.getSession().getAttribute("rechercheUtilisateur")==null) {
-		 * si null delegation à la page de connexion
-		 * getServletContext().getRequestDispatcher("/ConnexionServlet?get=1").forward(request, response);
-		 */
-
+		  
 		Utilisateur userAModifier = (Utilisateur) request.getSession().getAttribute("rechercheUtilisateur");
 				
 		// créer un utilisateur avec les informations entrées dans le formulaire
@@ -77,7 +70,6 @@ public class ModificationprofilServlet extends HttpServlet {
 		
 	}else {
 		//affichage du message d'erreur 
-		System.out.println("caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé");
 		out.print("<p style=\"color:red\">caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé</p>");    
         RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/modificationprofil.jsp");    
         rd.include(request,response);

@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+
+/* header */
+.headertop {
+
+    display: flex;
+    justify-content: space-between;
+    padding-top: 2vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-bottom: 2vh;
+    background-color: #EEE6CE;
+    border-bottom: white;
+    border-bottom-style: solid;
+    height: 3vh;
+}
+
+.headerbottom {
+    display: flex;
+    justify-content: center;
+    padding-top: 2vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    padding-bottom: 2vh;
+    background-color: #EEE6CE;
+    height: 3vh;
+}
+.connexion {
+    display: flex;
+    gap: 10px;
+    font-size: larger;
+}
+
+/* main accueilconnecte et accueilnonconnecte*/
+
+.mainConnecteEtNonConnecte {
+    margin-top: 15vh;
+    display: flex;
+    flex-direction: column;
+}
+.mainConnecteEtNonConnecte form {
+    display: flex;
+    justify-content: space-around;
+}
+
+.articles {
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.article {
+    border-style: groove;
+    padding-left: 200px;
+    padding-right: 50px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Page connexion */
+.seconnecter {
+	display: flex;
+    justify-content: center;
+    margin-top: 15vh;
+    border-style: double;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+}
+
+/*page creation de compte */
+.creation {
+
+}
+
+.formulairecreation {
+	
+}

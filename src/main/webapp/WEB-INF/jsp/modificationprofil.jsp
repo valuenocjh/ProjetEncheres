@@ -1,20 +1,20 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Mon espace membre</title>
 </head>
 <body>
 
 
-<h1>Eni Enchère</h1>
+<h1>Eni EnchÃ¨re</h1>
 <h3>Mon compte</h3>
 <h4>${profil.pseudo}</h4>
 <h4>Ancien : ${profil.motDePasse}</h4>
 ${rechercheUtilisateur.motDePasse}
-<p>Liste des enchères connecté</p>
+<p>Liste des enchÃ¨res connectÃ©</p>
 
 
  
@@ -27,13 +27,13 @@ ${rechercheUtilisateur.motDePasse}
         <label>Nom: </label>
         <input type="text" name="nom" value="${rechercheUtilisateur.nom}" required> 
 
-        <label>Prénom: </label>
+        <label>PrÃ©nom: </label>
         <input type="text" name="prenom" value="${rechercheUtilisateur.prenom}" required> 
         
         <label>Email: </label>
         <input type="email" name="email" value="${rechercheUtilisateur.email}" required> 
 
-        <label>Téléphone: </label>
+        <label>TÃ©lÃ©phone: </label>
         <input type="tel" name="telephone"  value="${rechercheUtilisateur.telephone}"> 
 
         <label>Rue: </label>

@@ -1,17 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
 
-	<header> </header>
+        <%@include file="headertitre.jsp" %>
 
 	<main>
-		<div>
+		<div class="seconnecter">
 			<div>
 				<!-- formulaire regroupant l'identifiant et le mot de passe-->
 				<form action="<%=request.getContextPath()%>/ConnexionServlet" method="post">
@@ -34,17 +35,17 @@
 						<div class="checkboxConnexion">
 							<input type="checkbox" /> <label>Se souvenir de moi</label>
 						</div>
-						<!-- div avec un lien pour mot de passe oublié-->
+						<!-- div avec un lien pour mot de passe oubliÃ©-->
 						<div>
-							<a href="#">Mot de passe oublié</a>
+							<a href="#">Mot de passe oubliÃ©</a>
 						</div>
 					</div>
 				</form>
 			</div>
-			<!-- div avec le bouton créer un compte qui renvoie vers un lien pour s'inscrire-->
+			<!-- div avec le bouton crÃ©er un compte qui renvoie vers un lien pour s'inscrire-->
 			<div>
 				<button>
-					<a href="<%=request.getContextPath()%>/CreationprofilServlet">Créer un compte</a>
+					<a href="<%=request.getContextPath()%>/CreationprofilServlet">CrÃ©er un compte</a>
 				</button>
 			</div>
 		</div>

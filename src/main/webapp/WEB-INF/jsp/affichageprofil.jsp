@@ -1,18 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Mon espace membre</title>
 </head>
 <body>
 
 <div align="center">
-<h1>Eni Enchère</h1>
+<h1>Eni EnchÃ¨re</h1>
 <h3>Mon compte</h3>
 
-<p>Liste des enchères connecté</p>
+<p>Liste des enchÃ¨res connectÃ©</p>
 <p>pseudo: ${rechercheUtilisateur.pseudo}</p>
 <p>Nom : ${rechercheUtilisateur.nom}</p>
 <p>Prenom :  ${rechercheUtilisateur.prenom}</p>

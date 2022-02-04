@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+    <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
-<a href="<%=request.getContextPath()%>/VendreArticleServlet">Vendre un article</a>
-<a href="<%=request.getContextPath()%>/AffichageProfilServlet">Mon profil</a>
-<%@include file="header.jsp" %>
-    <main>
+
+<%@include file="headerconnecte.jsp" %>
+    <main class="mainConnecteEtNonConnecte">
     <!-- div contenant le formulaire -->
     <div>
         <form action="nomArticleContient" method="get">
@@ -26,7 +26,7 @@
             </div>
         </form>
     </div>
-            <!-- div contenant les images et informations des enchères -->
+            <!-- div contenant les images et informations des enchï¿½res -->
     <div>
         <div>
             <!-- div image -->
@@ -34,9 +34,9 @@
             <!-- div informations article -->
             <div>
                 <ul>
-                    <li class="nomProduit">désignation produit</li>
+                    <li class="nomProduit">dÃ©signation produit</li>
                     <li>Prix : (prix produit) points</li>
-                    <li>Fin de l'enchère : (date)</li>
+                    <li>Fin de l'enchÃ¨re : (date)</li>
                     <li>Vendeur : (nomVendeur)</li>
                 </ul>
             </div>
@@ -50,9 +50,9 @@
             <!-- div informations article -->
             <div>
                 <ul>
-                    <li class="nomProduit">désignation produit</li>
+                    <li class="nomProduit">dÃ©signation produit</li>
                     <li>Prix : (prix produit) points</li>
-                    <li>Fin de l'enchère : (date)</li>
+                    <li>Fin de l'enchï¿½re : (date)</li>
                     <li>Vendeur : (nomVendeur)</li>
                 </ul>
             </div>

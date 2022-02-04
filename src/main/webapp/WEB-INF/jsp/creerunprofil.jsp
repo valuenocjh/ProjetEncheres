@@ -1,58 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Mon profil</title>
-
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
- <div>
+<%@include file="headertitre.jsp"%>
+ <div class="formulairecreation">
+		<div class="creation">
+			<form action="<%=request.getContextPath()%>/CreationprofilServlet"
+				method="post">
+				<div>
+					<label>Pseudo: </label> <input type="text" name="pseudo" required>
 
-<form action="<%=request.getContextPath()%>/CreationprofilServlet" method="post">
+					<label>PrÃ©nom: </label> <input type="text" name="prenom" required>
 
-        <label>Pseudo: </label>
-        <input type="text" name="pseudo" required>
-        
-        <label>Nom: </label>
-        <input type="text" name="nom" required> 
+					<label>TÃ©lÃ©phone: </label> <input type="tel" name="telephone">
 
-        <label>Prénom: </label>
-        <input type="text" name="prenom" required> 
+					<label>Code postal: </label> <input type="number" name="codepostal"
+						required> <label>Mot de passe: </label> <input
+						type="password" name="motdepasse" required>
 
-        
-        <label>Email: </label>
-        <input type="email" name="email" required> 
+				</div>
+				<div>
 
-        <label>Téléphone: </label>
-        <input type="tel" name="telephone"> 
+					<label>Nom: </label> <input type="text" name="nom" required>
 
-        <label>Rue: </label>
-        <input type="text" name="rue" required> 
+					<label>Email: </label> <input type="email" name="email" required>
 
-        <label>Code postal: </label>
-        <input type="number" name="codepostal" required> 
+					<label>Rue: </label> <input type="text" name="rue" required>
 
-        <label>Ville: </label>
-        <input type="text" name="ville" required> 
+					<label>Ville: </label> <input type="text" name="ville" required>
 
-        <label>Mot de passe: </label>
-        <input type="password" name="motdepasse" required> 
+					<label>Confirmation: </label> <input type="password"
+						name="confirmation" required>
 
-        <label>Confirmation: </label>
-        <input type="password" name="confirmation" required> 
-        
-        <input type="submit" value="Créer"> 
-           </form>
- </div>
-
-
-    <div>
-        <a href="/ConnexionServlet">
-            <input type="button" value="Annuler" />
-         </a> 
-    </div>
-
+				</div>
+				<input type="submit" value="CrÃ©er">
+			</form>
+		</div>
+</div>
+		<a href="/ConnexionServlet"> <input type="button" value="Annuler" />
+		</a>
 </body>
 </html>

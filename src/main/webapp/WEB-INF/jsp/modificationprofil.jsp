@@ -5,22 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Mon espace membre</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
+<%@include file="headertitre.jsp" %>
+<!-- suite a gérer -->
 
-
-<h1>Eni Enchère</h1>
-<h3>Mon compte</h3>
-<h4>${profil.pseudo}</h4>
-<h4>Ancien : ${profil.motDePasse}</h4>
-${rechercheUtilisateur.motDePasse}
-<p>Liste des enchères connecté</p>
+<h3>Modifier mon compte</h3>
 
 
  
-
+<div class="profil">
     <form action="<%=request.getContextPath()%>/ModificationprofilServlet" method="post">
-<div>
+	<div>
         <label>Pseudo: </label>
         <input type="text" name="pseudo" value="${rechercheUtilisateur.pseudo}" required>
         
@@ -65,5 +62,6 @@ ${rechercheUtilisateur.motDePasse}
          </a> 
     </div>
 </form>
+</div>
 </body>
 </html>

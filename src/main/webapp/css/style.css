@@ -2,9 +2,12 @@
     margin: 0;
     padding: 0;
     list-style-type: none;
+   
 }
 
-
+body {
+	background-color:#FFFCC9;
+}
 /* header */
 
 .headercomplet {
@@ -18,8 +21,8 @@
     padding-left: 2vw;
     padding-right: 2vw;
     padding-bottom: 2vh;
-    background-color: #EEE6CE;
-    border-bottom: black;
+    background-color: #429E9D ;
+    border-bottom: #FFFCC9;
     border-bottom-style: solid;
     height: 3vh;
 }
@@ -31,7 +34,7 @@
     padding-left: 2vw;
     padding-right: 2vw;
     padding-bottom: 2vh;
-    background-color: #EEE6CE;
+    background-color: #429E9D;
     height: 3vh;
 }
 .connexion {
@@ -77,6 +80,7 @@
     margin-right: 30vw;
     padding-top: 4vh;
     padding-bottom: 4vh;
+    background-color: #D6FFE0;
 }
 .id {
 	margin-bottom:10px;
@@ -88,14 +92,16 @@
 	margin-bottom:10px;
 }
 .checkboxConnexion {
+	
 	margin-bottom:10px;
 }
 
-/*page creation de compte */
-.creation {
-
+.titre {
+	margin-top:12vh;
+	margin-bottom:5vh
 }
 
-.formulairecreation {
-	
+.profil {
+	text-align:center;
+	width:30vw;
 }

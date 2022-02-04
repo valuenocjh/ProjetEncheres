@@ -1,4 +1,5 @@
     <!-- div pour le haut du header - Titre et connexion -->
+   <div class="headercomplet">
     <div class="headertop">
         <div>
             <h3>ENI-Enchères</h3>
@@ -10,3 +11,4 @@
     <div class="headerbottom">
 
     </div>
+</div>

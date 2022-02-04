@@ -29,8 +29,8 @@ public class ConnexionServlet extends HttpServlet {
 	}
 
 	/**
-	 * le doPostt controle l'identifiant et le mot de passe, si la connexion est
-	 * validée il nous renvoit vers la page listedesencheresconnecte.jsp sinon
+	 * le doPost controle l'identifiant et le mot de passe, si la connexion est
+	 * validée il nous renvoit vers la page accueilconnecte.jsp sinon
 	 * retour sur la page de connexion
 	 */
 

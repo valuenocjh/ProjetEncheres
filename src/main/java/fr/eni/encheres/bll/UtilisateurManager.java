@@ -8,6 +8,7 @@ import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.UtilisateurDAO;
 
 public class UtilisateurManager {
+	//Création du Singleton UtilisateurManager
 
 	private static UtilisateurManager instance;
 
@@ -56,6 +57,8 @@ public class UtilisateurManager {
 		return ud.selectByLogin(user);
 
 	}
+	
+	//méthode pour créer un compte
 	
 	public Utilisateur loginInfo (Utilisateur userInfo) {
 		

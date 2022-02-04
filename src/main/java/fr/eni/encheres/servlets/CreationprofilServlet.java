@@ -47,7 +47,7 @@ public class CreationprofilServlet extends HttpServlet {
 		String confirmation = request.getParameter("confirmation").trim().toLowerCase();
 		PrintWriter out = response.getWriter();
 
-// penser à gérer si les mots de passe sont différents et pseudo en alphanumerique
+//  Gestion des mots de passe si différents et pseudo en alphanumerique
 
 		if ( identifiant.matches("\\p{Alnum}+") & confirmation.equals(motdepasse)) {
 			
@@ -68,7 +68,7 @@ public class CreationprofilServlet extends HttpServlet {
 				if (!um.login(nouvelutilisateur)) {
 					
 					um.addUser(nouvelutilisateur);
-					// créer une session et ouvrir la page listedesencheresconnecte
+					// créer une session et ouvrir la page accueilconnecte
 					HttpSession session = request.getSession();
 					Utilisateur user = um.loginInfo(nouvelutilisateur);
 					session.setAttribute("rechercheUtilisateur", user);
@@ -77,6 +77,7 @@ public class CreationprofilServlet extends HttpServlet {
 					request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
 					
 				} else {
+					//affichage du message d'erreur si aucun compte n'est trouvé
 					out.print("<p style=\"color:red\">caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé</p>");    
 			        RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp");    
 			        rd.include(request,response);
@@ -88,11 +89,12 @@ public class CreationprofilServlet extends HttpServlet {
 				System.out.println("erreur");
 			}
 		} else {
+			//affichage message d'erreur si login ou mot de passe n'est pas bon
 			System.out.println("caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé");
 			out.print("<p style=\"color:red\">caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé</p>");    
 	        RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp");    
 	        rd.include(request,response);
-			//request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+			
 		}
 	}
 

@@ -22,8 +22,9 @@ public class ArticleDAOImpl implements ArticleDAO {
 		Date finEncheres =  new java.sql.Date(article.getDateFinEncheres().getTime());
 		try {
 			cnx = ConnectionProvider.seConnecter();
-			//appeler la requete sql
+			//appeler la requete sql 
 			stmt = cnx.prepareStatement(INSERT);
+			//Récupération des paramètres des entrées utilisateurs dans la BDD
 			stmt.setString(1, article.getNomArticle());
 			stmt.setString(2, article.getDescription());
 			stmt.setDate(3, debEncheres);

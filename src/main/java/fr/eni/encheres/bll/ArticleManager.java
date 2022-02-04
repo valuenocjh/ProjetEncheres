@@ -11,6 +11,7 @@ public class ArticleManager {
 
 	private static ArticleManager instance;
 
+	//Création du Singleton ArticleManager
 	private ArticleManager() {
 	}
 	/**

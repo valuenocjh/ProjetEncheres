@@ -36,6 +36,7 @@ public class Article {
 		setCategorie(categorie);
 	}
 
+		//Accesseurs mutateurs
 	public int getNoArticle() {
 		return noArticle;
 	}
@@ -108,6 +109,6 @@ public class Article {
 		this.categorie = categorie;
 	}
 
-	//Accesseurs - Mutateurs
+
 	
 }

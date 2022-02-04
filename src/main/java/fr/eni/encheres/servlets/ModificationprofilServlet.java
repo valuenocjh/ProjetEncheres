@@ -36,11 +36,14 @@ public class ModificationprofilServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// je tente  de recuperer mon utilisateur connecte en session
-//		if (request.getSession().getAttribute("rechercheUtilisateur")==null) {
-//			//si null delegation à la page de connexion
-//			getServletContext().getRequestDispatcher("/ConnexionServlet?get=1").forward(request, response);
-//		}
+		
+		/** !!!!! CODE DE THIERRY A VERIFIER !!!!!
+		 * je tente  de recuperer mon utilisateur connecte en session
+		 * if (request.getSession().getAttribute("rechercheUtilisateur")==null) {
+		 * si null delegation à la page de connexion
+		 * getServletContext().getRequestDispatcher("/ConnexionServlet?get=1").forward(request, response);
+		 */
+
 		Utilisateur userAModifier = (Utilisateur) request.getSession().getAttribute("rechercheUtilisateur");
 				
 		// créer un utilisateur avec les informations entrées dans le formulaire
@@ -65,6 +68,7 @@ public class ModificationprofilServlet extends HttpServlet {
 		// appel de la méthode modifieruser de la bll
 		um.modifierUser(UtilisateurModification, userAModifier);
 		
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("rechercheUtilisateur", UtilisateurModification);
 		userAModifier.setPseudo(request.getParameter("pseudo").trim().toLowerCase());
@@ -72,11 +76,12 @@ public class ModificationprofilServlet extends HttpServlet {
 		request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
 		
 	}else {
+		//affichage du message d'erreur 
 		System.out.println("caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé");
 		out.print("<p style=\"color:red\">caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé</p>");    
         RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/modificationprofil.jsp");    
         rd.include(request,response);
-		//request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
+	
 	}
 	}
 }

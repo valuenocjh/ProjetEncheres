@@ -12,10 +12,12 @@ import javax.sql.DataSource;
 
 public class ConnectionProvider {
 	private static DataSource datasource;
+	//Externalisation de la chaîne de connexion 
 	
 	static {
 		Context context;
-		
+	
+	//vérification login administrateur
 		try {
 			context = new InitialContext();
 			datasource = (DataSource) context.lookup("java:comp/env/jdbc/cnx_pool");
@@ -25,12 +27,14 @@ public class ConnectionProvider {
 		}
 	}
 	
+	//Obtenir une connexion 
 	public static Connection seConnecter() throws SQLException {
 		Connection cnx = null;
 		cnx = datasource.getConnection();
 		return cnx;
 	}
 	
+	//Se déconnecter à partir d'une connexion
 	public static void seDeconnecter(Connection cnx) {
 		try {
 			cnx.close();
@@ -40,6 +44,7 @@ public class ConnectionProvider {
 		
 	}
 	
+	//Se déconnecter à partir d'une connexion et d'un pstmt
 	public static void seDeconnecter(Connection cnx, PreparedStatement pstmt) {
 		try {
 			pstmt.close();
@@ -49,6 +54,7 @@ public class ConnectionProvider {
 		}
 	}
 	
+	//Se déconnecter à partir d'une connexion et d'un stmt
 	public static void seDeconnecter(Connection cnx, Statement stmt) {
 		try {
 			stmt.close();

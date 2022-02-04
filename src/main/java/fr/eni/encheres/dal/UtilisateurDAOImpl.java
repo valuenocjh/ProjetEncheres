@@ -57,10 +57,8 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		ResultSet result=null;
 		boolean existeUser = false;
 		
-		// tester le parametre de ma methode
-		//if (utilisateur == null) {
-		//	throw new DALException("utilisateur inexistant - Classe: UtilisateurDAOImpl - Methode: SelectByLogin - Ligne 61");
-		//}
+		
+		
 		
 		// obtenir une connexion à la base de données du pool de connexion
 
@@ -80,8 +78,6 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			//etant donné que le login et email UNIQUE j'utilise un if pour obtenir
 			//l'enregistrement
 			if (result.next()) {
-				//utilisateur.setPseudo(result.getString("pseudo"));
-				//utilisateur.setMotDePasse(result.getString("mot_de_passe"));
 				existeUser= true;
 			}
 
@@ -134,9 +130,14 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 			}
 			
 			return utilisateur; 
+			
+			
 		}
+		//Utilisateur = modification apportées 
+		//UserModifier = anciennes informations pour comparer avec le pseudo 
 		@Override
 		public void modifierProfil(Utilisateur utilisateur, Utilisateur userAModifier) {
+			
 			Connection cnx = null;
 			PreparedStatement pstmt = null;
 			try {

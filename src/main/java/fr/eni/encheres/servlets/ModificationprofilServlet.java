@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
@@ -59,7 +60,11 @@ public class ModificationprofilServlet extends HttpServlet {
 		
 		
 		// appel de la méthode modifieruser de la bll
-		um.modifierUser(UtilisateurModification, userAModifier);
+		try {
+			um.modifierUser(UtilisateurModification, userAModifier);
+		} catch (BLLException e) {
+			e.printStackTrace();
+		}
 		
 		
 		HttpSession session = request.getSession();

@@ -16,7 +16,7 @@ public class EnchereDAOImpl implements EnchereDAO{
 	
 	
 	@Override
-	public void insertEnchere(Enchere enchere) {
+	public void insertEnchere(Enchere enchere) throws DALException {
 		Connection cnx = null; 
 		PreparedStatement pstmt = null;
 		
@@ -29,12 +29,14 @@ public class EnchereDAOImpl implements EnchereDAO{
 			//Récupération des entrées utilisateur
 			pstmt.setDate(1, date_enchere);
 			pstmt.setInt(2, enchere.getUtilisateur().getNoUtilisateur());
+			System.out.println(enchere.getArticle().getNoArticle());
 			pstmt.setInt(3, enchere.getArticle().getNoArticle());
 			pstmt.setInt(4, enchere.getMontantEnchere());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new DALException("probleme dans la methode insertEnchere()", e);
+		} finally {
+			ConnectionProvider.seDeconnecter(cnx, pstmt);
 		}
 	}
 

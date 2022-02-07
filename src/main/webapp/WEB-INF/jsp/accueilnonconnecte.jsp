@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -33,37 +34,25 @@
         </form>
     </div>
             <!-- div contenant les images et informations des enchÃ¨res -->
-    <div class="articles">
-        <div>
+    <div">
+	<c:forEach items="${listeArticles}" var="article">
+	
+		<div>
             <!-- div image -->
             <div><img src="" alt=""></div>
             <!-- div informations article -->
-            <div class="article">
+            <div>
                 <ul>
-                    <li class="nomProduit">désignation produit</li>
-                    <li>Prix : (prix produit) points</li>
-                    <li>Fin de l'enchÃ¨re : (date)</li>
-                    <li>Vendeur : (nomVendeur)</li>
+                    <li class="nomProduit">${article.nomArticle}</li>
+					<li>Prix : ${article.prixVente} points</li>
+                    <li>Fin de l'enchère : ${article.dateFinEncheres}</li>
+                    <li>Vendeur : ${article.utilisateur.pseudo}</li>
                 </ul>
             </div>
             
         </div>
-    
-    
-        <div>
-            <!-- div image -->
-            <div><img src="" alt=""></div>
-            <!-- div informations article -->
-            <div class="article">
-                <ul>
-                    <li class="nomProduit">dï¿½signation produit</li>
-                    <li>Prix : (prix produit) points</li>
-                    <li>Fin de l'enchï¿½re : (date)</li>
-                    <li>Vendeur : (nomVendeur)</li>
-                </ul>
-            </div>
-            
-        </div>
+        
+	</c:forEach>
     </div>
 </main>
 

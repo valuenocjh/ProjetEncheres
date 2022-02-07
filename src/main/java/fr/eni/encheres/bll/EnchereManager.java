@@ -1,6 +1,7 @@
 package fr.eni.encheres.bll;
 
 import fr.eni.encheres.bo.Enchere;
+import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFactory;
 import fr.eni.encheres.dal.EnchereDAO;
 
@@ -21,8 +22,12 @@ public class EnchereManager {
 	}
 	
 	//Méthode pour insérer une enchère en passant par la DAOFactory
-	public void insertEnchere(Enchere enchere) {
+	public void insertEnchere(Enchere enchere) throws BLLException {
 		EnchereDAO ed = DAOFactory.getEnchereDAO();
-		ed.insertEnchere(enchere);
+		try {
+			ed.insertEnchere(enchere);
+		} catch (DALException e) {
+			throw new BLLException("probleme dans la methode insertEnchere()", e);
+		}
 	}
 }

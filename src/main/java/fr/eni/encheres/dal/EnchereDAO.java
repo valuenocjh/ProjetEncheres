@@ -7,6 +7,6 @@ import fr.eni.encheres.bo.Enchere;
 public interface EnchereDAO {
 	//méthode pour insérer une enchère
 	
-	public void insertEnchere(Enchere enchere);
+	public void insertEnchere(Enchere enchere) throws DALException;
 	
 }

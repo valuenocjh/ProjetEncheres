@@ -8,38 +8,38 @@
 </head>
 <body>
 <main>
-        <form action="/VendreArticleServlet" method="post">
+        <form action="<%=request.getContextPath()%>/VendreArticleServlet" method="post">
             <div>
-                <div id="article">
+                <div">
                     <label>Article : </label>
                     <input type="text" name="article" required/>
                 </div>
-                <div id="description"> 
+                <div"> 
                     <label>Description : </label>
                     <input type="text" name="description" required/>
                 </div>
                 <div>
                     <label>Catégorie : </label>
-                    <select id="categorie">
-                        <option value="0">Informatique</option>
-                        <option value="1">Ameublement</option>
-                        <option value="2">Vetement</option>
-                        <option value="3">Sport & Loisirs</option>
+                    <select name="categorie">
+                        <option>Informatique</option>
+                        <option>Ameublement</option>
+                        <option>Vetement</option>
+                        <option>Sport et Loisirs</option>
                     </select>
                 </div>
-                <div id="photo">
+                <div>
                     <label>Photo de l'article : </label>
                     <input type="file" name="photo" accept="image/png, image/jpeg">
                 </div>
-                <div id="miseaprix">
+                <div">
                     <label>Mise à prix</label>
                     <input type="number" name="miseaprix" required/>
                 </div>
-                <div id="debutenchere">
+                <div">
                     <label>Début de l'enchère : </label>
                     <input type="date" name="debutenchere" required/>
                 </div>
-                <div id="finenchere">
+                <div">
                     <label>Fin de l'enchère : </label>
                     <input type="date" name="finenchere" required/>
                 </div>
@@ -58,6 +58,8 @@
                     <input type="text" name="ville" value="${rechercheUtilisateur.ville}"required/>
                 </div>
             </div>
+            <input type="submit" value="envoyer"/>
         </form>
+        </main>
 </body>
 </html>

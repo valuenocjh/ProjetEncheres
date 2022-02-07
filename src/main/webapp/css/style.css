@@ -49,6 +49,7 @@ body {
     margin-top: 15vh;
     display: flex;
     flex-direction: column;
+    flex-wrap:wrap;
 }
 .mainConnecteEtNonConnecte form {
     display: flex;
@@ -62,11 +63,9 @@ body {
 
 
 .article {
-    border-style: groove;
-    padding-left: 200px;
-    padding-right: 50px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+	border-style: solid;
+	width:25vw;
+	height: 25vh;
 }
 
 /* Page connexion */
@@ -107,4 +106,8 @@ body {
     text-align: left;
     gap: 2vw;
     justify-content: center;
+}
+
+.touteslesencheres {
+	display :flex;
 }

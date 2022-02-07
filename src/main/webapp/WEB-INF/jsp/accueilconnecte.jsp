@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Bienvenue</title>
     <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
@@ -27,38 +27,30 @@
         </form>
     </div>
             <!-- div contenant les images et informations des ench�res -->
-    <div>
-        <div>
+    <div class="touteslesarticles">
+
+
+	<c:forEach items="${listeArticles}" var="article">
+		<div  class="article">
             <!-- div image -->
-            <div><img src="" alt=""></div>
+            <div>
+            <img src="" alt="">
+            </div>
             <!-- div informations article -->
             <div>
                 <ul>
-                    <li class="nomProduit">désignation produit</li>
-                    <li>Prix : (prix produit) points</li>
-                    <li>Fin de l'enchère : (date)</li>
-                    <li>Vendeur : (nomVendeur)</li>
+                    <li class="nomProduit">${article.nomArticle}</li>
+					<li>Prix : ${article.prixVente} points</li>
+                    <li>Fin de l'enchère : ${article.dateFinEncheres}</li>
+                    <li>Vendeur : ${article.utilisateur.pseudo}</li>
                 </ul>
             </div>
             
         </div>
+  
+	</c:forEach>
+    </div>  
     
-    
-        <div>
-            <!-- div image -->
-            <div><img src="" alt=""></div>
-            <!-- div informations article -->
-            <div>
-                <ul>
-                    <li class="nomProduit">désignation produit</li>
-                    <li>Prix : (prix produit) points</li>
-                    <li>Fin de l'ench�re : (date)</li>
-                    <li>Vendeur : (nomVendeur)</li>
-                </ul>
-            </div>
-            
-        </div>
-    </div>
 </main>
 
     

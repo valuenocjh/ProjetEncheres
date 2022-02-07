@@ -60,15 +60,23 @@ public class UtilisateurManager {
 	
 	//méthode pour créer un compte
 	
-	public Utilisateur loginInfo (Utilisateur userInfo) {
+	public Utilisateur loginInfo (Utilisateur userInfo) throws BLLException {
 		
 		UtilisateurDAO ud = DAOFactory.getUserDAO();
-		return ud.selectInfo(userInfo); 
+		try {
+			return ud.selectInfo(userInfo);
+		} catch (DALException e) {
+			throw new BLLException("probleme dans la methode loginInfo()", e);
+		} 
 	}
 
-	public void modifierUser(Utilisateur user, Utilisateur userAModifier) {
+	public void modifierUser(Utilisateur user, Utilisateur userAModifier) throws BLLException {
 		//appeler la methode private validerUser() méthode a créer pour valider les contraintes de l'user
 		UtilisateurDAO ud = DAOFactory.getUserDAO();
-		ud.modifierProfil(user, userAModifier);
+		try {
+			ud.modifierProfil(user, userAModifier);
+		} catch (DALException e) {
+			throw new BLLException("probleme dans la methode modifierUser()", e);
+		}
 	}
 }

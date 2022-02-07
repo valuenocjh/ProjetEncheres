@@ -19,7 +19,7 @@ public class DeconnexionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//Fermeture de la session en cours
 		HttpSession session = request.getSession();
-		session.invalidate();
+		session.removeAttribute("rechercheUtilisateur");
 		//retour à la jsp accueilnonconnecté
 		request.getRequestDispatcher("/WEB-INF/jsp/accueilnonconnecte.jsp").forward(request, response);
 	}

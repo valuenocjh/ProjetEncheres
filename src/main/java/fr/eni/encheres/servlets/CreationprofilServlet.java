@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DALException;
@@ -85,8 +86,8 @@ public class CreationprofilServlet extends HttpServlet {
 					//request.getRequestDispatcher("/WEB-INF/jsp/pageConnexion.jsp").forward(request, response);
 					
 				}
-			} catch (SQLException | DALException e) {
-				System.out.println("erreur");
+			} catch (SQLException | DALException | BLLException e) {
+				e.getStackTrace();
 			}
 		} else {
 			//affichage message d'erreur si login ou mot de passe n'est pas bon

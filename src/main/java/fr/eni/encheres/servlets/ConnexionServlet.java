@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DALException;
@@ -60,7 +61,7 @@ public class ConnexionServlet extends HttpServlet {
 			if (um.login(rechercheUtilisateur)) {
 				HttpSession session = request.getSession();
 				// durée de vie de la session à 5 minutes
-				session.setMaxInactiveInterval(10);
+				session.setMaxInactiveInterval(300);
 				Utilisateur user = um.loginInfo(rechercheUtilisateur);
 				session.setAttribute("rechercheUtilisateur", user);
 				response.sendRedirect(request.getContextPath() + "/Compte");
@@ -76,8 +77,8 @@ public class ConnexionServlet extends HttpServlet {
 				
 			}
 			
-		} catch (DALException e) {
-
+		} catch (DALException | BLLException e) {
+			e.getStackTrace();
 		}
 	}
 }

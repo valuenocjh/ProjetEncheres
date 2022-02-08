@@ -13,6 +13,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	
 	private final static String INSERT =" INSERT INTO articles ( nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, UTILISATEUR_no_utilisateur, CATEGORIE_no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 	private final static String SELECT_ARTICLES="SELECT  no_article ,nom_article ,description, prix_vente, date_fin_encheres, UTILISATEUR_no_utilisateur FROM Articles;";
+	private final static String SELECT_ALL="SELECT no_article FROM Articles WHERE nom_article = ? AND description = ?;";
 	
 	@Override
 	public void insertArticle(Article article) throws DALException {
@@ -85,6 +86,27 @@ public class ArticleDAOImpl implements ArticleDAO {
 				}
 				
 		return listeArticles;
+	}
+
+
+	@Override
+	public Article selectArticle(Article article) throws DALException {
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			cnx= ConnectionProvider.seConnecter();
+			pstmt = cnx.prepareStatement(SELECT_ALL);
+			pstmt.setString(1, article.getNomArticle());
+			pstmt.setString(2, article.getDescription());
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				article.setNoArticle(rs.getInt("no_article"));
+			}
+		} catch (SQLException e) {
+			throw new DALException("probleme dans la methode selectArticle()", e);
+		}
+		return article;
 	}
 
 }

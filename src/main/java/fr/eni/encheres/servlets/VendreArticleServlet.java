@@ -18,6 +18,7 @@ import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.bo.Enchere;
 import fr.eni.encheres.bo.Utilisateur;
+import fr.eni.encheres.dal.DALException;
 
 @WebServlet("/VendreArticleServlet")
 public class VendreArticleServlet extends HttpServlet {
@@ -47,7 +48,7 @@ public class VendreArticleServlet extends HttpServlet {
 			if(request.getParameter("miseaprix").matches("\\d+")) {
 				article.setPrixInitial(Integer.parseInt(request.getParameter("miseaprix")));
 			}
-			article.setPrixVente(50);
+			article.setPrixVente(Integer.parseInt(request.getParameter("miseaprix")));
             article.setUtilisateur((Utilisateur) request.getSession().getAttribute("rechercheUtilisateur"));
 
 			String categorie = request.getParameter("categorie");
@@ -82,22 +83,23 @@ public class VendreArticleServlet extends HttpServlet {
 			// création d'une instance d'articleManager
 			ArticleManager am = ArticleManager.getInstance();
 			am.addArticle(article);
+			article = am.selectArticle(article);
 			// creation d'un attribut article dans la session
 			
 			request.getSession().setAttribute("article", article);
 			
+			// création d'une enchere (a controler)
+			Enchere enchere = new Enchere();
+			enchere.setArticle(article);
+			enchere.setDateEnchere(article.getDateFinEncheres());
+			enchere.setMontantEnchere(article.getPrixInitial());
+			enchere.setUtilisateur(article.getUtilisateur());
+			EnchereManager em = EnchereManager.getInstance();
+			em.insertEnchere(enchere);
 			
-//			Enchere enchere = new Enchere();
-//			enchere.setArticle(article);
-//			enchere.setDateEnchere(article.getDateFinEncheres());
-//			enchere.setMontantEnchere(article.getPrixInitial());
-//			enchere.setUtilisateur(article.getUtilisateur());
-//			EnchereManager em = EnchereManager.getInstance();
-//			em.insertEnchere(enchere);
-//			
 			//renvoi vers la page accueilconnecte
 			request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
-		} catch (ParseException | BLLException e) {
+		} catch (ParseException | BLLException | DALException e) {
 			e.printStackTrace();
 		}
 		

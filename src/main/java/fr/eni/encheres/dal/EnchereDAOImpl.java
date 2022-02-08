@@ -12,7 +12,7 @@ import fr.eni.encheres.bo.Enchere;
 public class EnchereDAOImpl implements EnchereDAO{
 
 	//Requète SQL 
-	public static final String INSERT = "Insert into encheres Values (?, ?, ?, ?);";
+	public static final String INSERT = "Insert into Encheres Values (?, ?, ?, ?);";
 	
 	
 	@Override
@@ -29,7 +29,6 @@ public class EnchereDAOImpl implements EnchereDAO{
 			//Récupération des entrées utilisateur
 			pstmt.setDate(1, date_enchere);
 			pstmt.setInt(2, enchere.getUtilisateur().getNoUtilisateur());
-			System.out.println(enchere.getArticle().getNoArticle());
 			pstmt.setInt(3, enchere.getArticle().getNoArticle());
 			pstmt.setInt(4, enchere.getMontantEnchere());
 			pstmt.executeUpdate();

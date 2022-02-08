@@ -54,6 +54,11 @@ public class ArticleManager {
 		}
 	}
 	
+	public Article selectArticle(Article article) throws DALException {
+		ArticleDAO ad = DAOFactory.getArticleDAO();
+		return ad.selectArticle(article);
+	}
+	
 	
 	
 	

@@ -23,7 +23,7 @@
                     <select name="categorie">
                         <option>Informatique</option>
                         <option>Ameublement</option>
-                        <option>Vetement</option>
+                        <option>Vetements</option>
                         <option>Sport et Loisirs</option>
                     </select>
                 </div>

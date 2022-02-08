@@ -43,7 +43,7 @@
 			</form>
 		</div>
 </div>
-		<a href="/ConnexionServlet"> <input type="button" value="Annuler" />
+		<a href="<%=request.getContextPath()%>/ConnexionServlet"> <input type="button" value="Annuler" />
 		</a>
 </body>
 </html>

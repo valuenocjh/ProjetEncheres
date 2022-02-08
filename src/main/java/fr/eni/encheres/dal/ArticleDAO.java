@@ -12,4 +12,5 @@ public interface ArticleDAO {
 		public void insertArticle(Article artcile) throws DALException;
 		public void removeArticle(Article article) throws DALException;
 		public List<Article> listeArticles() throws DALException;
+		public Article selectArticle(Article article) throws DALException ;
 }

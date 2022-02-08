@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import fr.eni.encheres.bo.Article;
+import fr.eni.encheres.bo.Categorie;
 import fr.eni.encheres.dal.ArticleDAO;
 import fr.eni.encheres.dal.DALException;
 import fr.eni.encheres.dal.DAOFactory;
@@ -59,6 +60,9 @@ public class ArticleManager {
 		return ad.selectArticle(article);
 	}
 	
-	
+	public List<Article> selectListeParCat (Article article, String requete) throws DALException {
+		ArticleDAO ad = DAOFactory.getArticleDAO();
+		return ad.selectListeParCat(article, requete);
+	}
 	
 }

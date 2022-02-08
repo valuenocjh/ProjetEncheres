@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.sun.net.httpserver.Authenticator.Result;
+
 import java.sql.Date;
 import fr.eni.encheres.bo.Article;
 
@@ -14,6 +17,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 	private final static String INSERT =" INSERT INTO articles ( nom_article, description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, UTILISATEUR_no_utilisateur, CATEGORIE_no_categorie) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 	private final static String SELECT_ARTICLES="SELECT  no_article ,nom_article ,description, prix_vente, date_fin_encheres, UTILISATEUR_no_utilisateur FROM Articles;";
 	private final static String SELECT_ALL="SELECT no_article FROM Articles WHERE nom_article = ? AND description = ?;";
+
 	
 	@Override
 	public void insertArticle(Article article) throws DALException {
@@ -107,6 +111,37 @@ public class ArticleDAOImpl implements ArticleDAO {
 			throw new DALException("probleme dans la methode selectArticle()", e);
 		}
 		return article;
+	}
+
+
+	@Override
+	public List<Article> selectListeParCat(Article article, String requete) throws DALException {
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Article> listeArticlesParCat =  new ArrayList<Article>();
+		
+		try {
+			cnx=ConnectionProvider.seConnecter();
+			pstmt = cnx.prepareStatement(requete);
+			rs= pstmt.executeQuery();
+			while (rs.next()) {
+				Article art = new Article();
+				art.setNoArticle(rs.getInt("no_article"));
+				art.setNomArticle(rs.getString("nom_article"));
+				art.setPrixVente(rs.getInt("prix_vente"));
+				art.setDateFinEncheres(rs.getDate("date_fin_encheres"));
+				art.setUtilisateur((new UtilisateurDAOImpl()).selectById(rs.getInt("UTILISATEUR_no_utilisateur")));
+				
+				listeArticlesParCat.add(art);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionProvider.seDeconnecter(cnx, pstmt);
+		}
+		
+		return listeArticlesParCat;
 	}
 
 }

@@ -71,7 +71,7 @@
 			</form>
 		</div>
 		<!-- div contenant les images et informations des ench�res -->
-		<div class="touteslesarticles">
+		<div class="touteslesencheres">
 
 
 			<c:forEach items="${listeArticles}" var="article">

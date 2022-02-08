@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bll.BLLException;
 import fr.eni.encheres.bo.Article;
+import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.dal.DALException;
 
 /** 
  * Servlet appelée à l'ouveture de l'application 
@@ -45,6 +47,39 @@ public class AccueilServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		Article article = new Article();
+		
+		String requete ="SELECT * FROM Articles INNER JOIN Categories ON Articles.CATEGORIE_no_categorie = Categories.no_categorie INNER JOIN Utilisateurs ON Articles.UTILISATEUR_no_utilisateur=Utilisateurs.no_utilisateur WHERE nom_article LIKE ";
+		
+		article.setNomArticle(request.getParameter("filtre_nom"));
+		
+		requete += "'%" + article.getNomArticle() + "%'";
+
+		String categorie = request.getParameter("categorie");
+		
+
+		
+		// récupérer ce qu'a choisit l'utilisateur et le mettre dans la requete
+		Categorie nouvelleCategorie = new Categorie();
+		if (!categorie.equalsIgnoreCase("Toutes")) {
+			requete += " AND libelle = '" + categorie + "'";
+		}
+		
+		article.setCategorie(nouvelleCategorie);
+
+		ArticleManager am = ArticleManager.getInstance();
+		List<Article> listeArticlesparcat;
+		try {
+			listeArticlesparcat = am.selectListeParCat(article, requete);
+			request.setAttribute("listeArticles", listeArticlesparcat);
+			System.out.println(listeArticlesparcat.size());
+		} catch (DALException e) {
+          e.printStackTrace();
+		}
+		
+		
+		request.getRequestDispatcher("/WEB-INF/jsp/accueilnonconnecte.jsp").forward(request, response);
+		//response.sendRedirect(request.getContextPath() + "/index.html");
 		
 		
 	}

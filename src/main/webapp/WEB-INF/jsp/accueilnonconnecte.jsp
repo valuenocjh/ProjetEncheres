@@ -17,15 +17,15 @@
 
 		<!-- div contenant le formulaire -->
 		<div>
-			<form action="nomArticleContient" method="get">
+			<form action="<%=request.getContextPath()%>/index.html" method="post">
 				<div class="filtresetrechercher">
 					<div>
-						<label for="Filtres">Filtres</label>
+						<label for="filtre_nom">Filtres</label>
 					</div>
 
 					<div>
 						<!-- div qui contient l'image de la loupe et l'input text -->
-						<img src="" alt=""> <input type="text" name="filtres">
+						<img src="" alt=""> <input type="text" name="filtre_nom">
 					</div>
 				</div>
 
@@ -44,10 +44,11 @@
 			</form>
 		</div>
 		<!-- div contenant les images et informations des enchÃ¨res -->
-		<div>
-			<c:forEach items="${listeArticles}" var="article">
+		<div class="touteslesencheres">
 
-				<div>
+
+			<c:forEach items="${listeArticles}" var="article">
+				<div class="article">
 					<!-- div image -->
 					<div>
 						<img src="" alt="">
@@ -66,6 +67,7 @@
 
 			</c:forEach>
 		</div>
+
 	</main>
 
 

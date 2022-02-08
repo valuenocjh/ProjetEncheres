@@ -68,6 +68,19 @@ body {
 	height: 25vh;
 }
 
+.formulaireAchatsVentes {
+    display: flex;
+}
+.achatscheck {
+	display: flex;
+    flex-direction: column;
+}
+
+.ventescheck {
+	display: flex;
+    flex-direction: column;
+}
+
 /* Page connexion */
 .seconnecter {
 	display: flex;

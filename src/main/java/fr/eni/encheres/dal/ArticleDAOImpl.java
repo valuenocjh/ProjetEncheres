@@ -124,6 +124,8 @@ public class ArticleDAOImpl implements ArticleDAO {
 		try {
 			cnx=ConnectionProvider.seConnecter();
 			pstmt = cnx.prepareStatement(requete);
+			pstmt.setString(1, "'%" + article.getNomArticle() + "%'");
+			pstmt.setString(2, article.getCategorie().getLibelle());
 			rs= pstmt.executeQuery();
 			while (rs.next()) {
 				Article art = new Article();

@@ -65,4 +65,6 @@ public class ArticleManager {
 		return ad.selectListeParCat(article, requete);
 	}
 	
+	
+	
 }

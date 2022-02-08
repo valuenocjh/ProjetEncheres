@@ -62,7 +62,7 @@ public class AccueilServlet extends HttpServlet {
 		// récupérer ce qu'a choisit l'utilisateur et le mettre dans la requete
 		Categorie nouvelleCategorie = new Categorie();
 		if (!categorie.equalsIgnoreCase("Toutes")) {
-			requete += " AND libelle = '" + categorie + "'";
+			requete += " AND libelle = '" + categorie + "';";
 		}
 		
 		article.setCategorie(nouvelleCategorie);

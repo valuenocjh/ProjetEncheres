@@ -15,15 +15,15 @@
 	<main class="mainConnecteEtNonConnecte">
 		<!-- div contenant le formulaire -->
 		<div>
-			<form action="nomArticleContient" method="get">
+			<form action="<%=request.getContextPath()%>/Compte" method="post">
 				<div class="filtresetrechercher">
 					<div>
-						<label for="Filtres">Filtres</label>
+						<label for="filtre_nom">Filtres</label>
 					</div>
 
 					<div>
 						<!-- div qui contient l'image de la loupe et l'input text -->
-						<img src="" alt=""> <input type="text" name="filtres">
+						<img src="" alt=""> <input type="text" name="filtre_nom">
 					</div>
 				</div>
 
@@ -37,6 +37,10 @@
 					</select>
 				</div>
 				<div>
+					<input type="submit" value="Rechercher">
+				</div>
+			
+		</div>
 					<div class="formulaireAchatsVentes">
 
 
@@ -44,10 +48,10 @@
 							<input type="radio" name="achatsventes" id="achats"><label
 								for="achatsventes">Achats</label>
 							<div class="achatscheck">
-								<input type="checkbox" name="achats" id="achats"><label
+								<input type="checkbox" name="encheresOuvertes" id="achats"><label
 									for="achats">enchères ouvertes</label> <input type="checkbox"
-									name="achats" id="achats"><label for="achats">mes
-									enchères en cours</label> <input type="checkbox" name="achats"
+									name="mesEncheresEnCours" id="achats"><label for="achats">mes
+									enchères en cours</label> <input type="checkbox" name="EncheresRemportees"
 									id="achats"><label for="achats">mes enchères
 									remportées</label>
 							</div>

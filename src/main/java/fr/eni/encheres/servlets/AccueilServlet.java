@@ -49,28 +49,19 @@ public class AccueilServlet extends HttpServlet {
 
 		Article article = new Article();
 		
-		String requete ="SELECT * FROM Articles INNER JOIN Categories ON Articles.CATEGORIE_no_categorie = Categories.no_categorie INNER JOIN Utilisateurs ON Articles.UTILISATEUR_no_utilisateur=Utilisateurs.no_utilisateur WHERE nom_article LIKE ";
-		
 		article.setNomArticle(request.getParameter("filtre_nom"));
-		
-		requete += "'%" + article.getNomArticle() + "%'";
-
 		String categorie = request.getParameter("categorie");
-		
-
 		
 		// récupérer ce qu'a choisit l'utilisateur et le mettre dans la requete
 		Categorie nouvelleCategorie = new Categorie();
-		if (!categorie.equalsIgnoreCase("Toutes")) {
-			requete += " AND libelle = '" + categorie + "';";
-		}
+		nouvelleCategorie.setLibelle(categorie);
 		
 		article.setCategorie(nouvelleCategorie);
 
 		ArticleManager am = ArticleManager.getInstance();
 		List<Article> listeArticlesparcat;
 		try {
-			listeArticlesparcat = am.selectListeParCat(article, requete);
+			listeArticlesparcat = am.selectListeParCat(article, false, false, false, false, false, false);
 			request.setAttribute("listeArticles", listeArticlesparcat);
 			System.out.println(listeArticlesparcat.size());
 		} catch (DALException e) {

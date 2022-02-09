@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.encheres.bll.ArticleManager;
 import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Categorie;
+import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DALException;
 
 //Servlet appelée lors de l'appuis sur le bouton connexion de la page pageconnexion
@@ -31,50 +32,54 @@ public class CompteServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		// String requete ="SELECT * FROM Articles INNER JOIN Categories ON Articles.CATEGORIE_no_categorie = Categories.no_categorie INNER JOIN Utilisateurs ON Articles.UTILISATEUR_no_utilisateur=Utilisateurs.no_utilisateur  ";
-		// String requete = "SELECT * from Articles LEFT JOIN encheres on articles.no_article = encheres.ARTICLE_no_article INNER JOIN Utilisateurs on Utilisateurs.no_utilisateur = Articles.UTILISATEUR_no_utilisateur INNER JOIN Categories on Categories.no_categorie = Articles.CATEGORIE_no_categorie ";
 		
-		//creation d'un boolean pour verifier si les checkbox sont cochées 
+		//creation de booleans pour verifier si les checkbox sont cochées 
+		
+		// verifier si la checkbox encheres ouvertes est cochée
 		boolean ck_encheresouvertes = request.getParameter("encheresOuvertes") != null ;
-		//requete SQL de base que l'on va incrémenter selon la demande de l'utilisateur
-		String encheresOuvertes ="select * from Articles WHERE ";
+		
+		//vérifier si la checkbox mes encheres en cours est cochée
+		boolean ck_mesencheresencours = request.getParameter("mesEncheresEnCours") !=null;
+		
+		//vérifier si la checkbox mes encheres remportées est cochée
+		boolean ck_mesencheresremportees = request.getParameter("EncheresRemportees") !=null;
+		
+		// vérifier si la checkbox mes ventes en cours est cochée
+		boolean ck_mesventesencours = request.getParameter("mesventesencours") !=null;
+		
+		// vérifier si la checkbox ventes non débutées est cochée
+		boolean ck_ventesnondebutees = request.getParameter("ventesnondebutees") !=null;
+		
+		// vérifier si la checkbox ventes terminées est cochée
+		boolean ck_ventesterminees = request.getParameter("ventesterminees") !=null;
+		
+		
 		Article article = new Article();
 		
-		
 		article.setNomArticle(request.getParameter("filtre_nom"));
+		article.setUtilisateur((Utilisateur) request.getSession().getAttribute("rechercheUtilisateur"));
 		
-		encheresOuvertes += "nom_article LIKE ?";
 		
-		// si la case "encheres ouvertes" est cochée
-		if(ck_encheresouvertes) { 
-			encheresOuvertes+=" AND date_fin_encheres >= GETDATE() AND date_debut_encheres <= GETDATE() ";
-		}
-		
-
+		// recuperation de la categorie choisie par l'utilisateur
 		String categorie = request.getParameter("categorie");
-		
-
-		
-		// récupérer ce qu'a choisit l'utilisateur et le mettre dans la requete
+				
+		// création d'un objet catégorie
 		Categorie nouvelleCategorie = new Categorie();
-		if (!categorie.equalsIgnoreCase("Toutes")) {
-			encheresOuvertes += " AND libelle = ?;";
-		}
-		
+		nouvelleCategorie.setLibelle(categorie);
 		article.setCategorie(nouvelleCategorie);
 
+		
 		ArticleManager am = ArticleManager.getInstance();
 		List<Article> listeArticlesparcat;
 		try {
-			listeArticlesparcat = am.selectListeParCat(article, encheresOuvertes);
+			listeArticlesparcat = am.selectListeParCat(article, ck_encheresouvertes, ck_mesencheresencours, ck_mesencheresremportees, ck_mesventesencours, ck_ventesnondebutees, ck_ventesterminees);
 			request.setAttribute("listeArticles", listeArticlesparcat);
 		} catch (DALException e) {
           e.printStackTrace();
 		}
 		
 		
-		request.getRequestDispatcher("/WEB-INF/jsp/accueilnonconnecte.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
 	
 	
 	

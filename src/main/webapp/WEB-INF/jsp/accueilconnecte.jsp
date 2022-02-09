@@ -60,10 +60,10 @@
 							<input type="radio" name="achatsventes" id="mesventes"><label
 								for="achatsventes">Ventes</label>
 							<div class="ventescheck">
-								<input type="checkbox" name="ventes" id="ventes"><label
+								<input type="checkbox" name="mesventesencours" id="ventes"><label
 									for="ventes">mes ventes en cours</label> <input type="checkbox"
-									name="ventes" id="ventes"><label for="ventes">ventes
-									non débutées</label> <input type="checkbox" name="ventes" id="ventes"><label
+									name="ventesnondebutees" id="ventes"><label for="ventes">ventes
+									non débutées</label> <input type="checkbox" name="ventesterminees" id="ventes"><label
 									for="ventes">ventes terminées</label>
 							</div>
 						</div>

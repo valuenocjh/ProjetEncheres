@@ -115,17 +115,72 @@ public class ArticleDAOImpl implements ArticleDAO {
 
 
 	@Override
-	public List<Article> selectListeParCat(Article article, String requete) throws DALException {
+	public List<Article> selectListeParCat(Article article, boolean ck_encheresouvertes, boolean ck_mesencheresencours, boolean ck_mesencheresremportees, boolean ck_mesventesencours, boolean ck_ventesnondebutees, boolean ck_ventesterminees) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Article> listeArticlesParCat =  new ArrayList<Article>();
+		int i = 1;
 		
+		// création de la requette avec le nom de l'article
+		String requete = "SELECT * FROM Articles INNER JOIN Categories ON Articles.CATEGORIE_no_categorie = Categories.no_categorie INNER JOIN Utilisateurs ON Articles.UTILISATEUR_no_utilisateur=Utilisateurs.no_utilisateur LEFT JOIN Encheres ON Articles.no_article = Encheres.ARTICLE_no_article WHERE nom_article LIKE ?";
+		
+		// complement de la requete avec le traitement des categories
+		if (!article.getCategorie().getLibelle().equalsIgnoreCase("Toutes")) {
+			requete += " AND libelle = ?";
+			i++;
+		}
+		
+		// completement de la requete avec la checkbox encheres ouvertes cochée
+		if(ck_encheresouvertes) { 
+			requete +=" AND date_fin_encheres >= GETDATE() AND date_debut_encheres <= GETDATE() ";
+		}
+		
+		// complement de la requete avec la checkbox mes encheres en cours cochee
+		if(ck_mesencheresencours) {
+			requete+=" AND date_fin_encheres >= GETDATE() AND Encheres.UTILISATEUR_no_utilisateur = ?";
+			i++;
+		}
+		
+		// completement de la requete avec la checkbox mes encheres remportées cochée
+		if (ck_mesencheresremportees) {
+			requete += " AND Encheres.UTILISATEUR_no_utilisateur = ? AND Encheres.date_enchere < GETDATE() AND Encheres.montant_enchere = (SELECT MAX(montant_enchere) FROM Encheres e2 Where e2.ARTICLE_no_article = Articles.no_article)";
+			if(!ck_mesencheresencours) {
+				i++;
+			}
+		}
+		
+		// completement de la requete avec la checkbox mes ventes en cours cochée
+		if (ck_mesventesencours) {
+			
+		}
+		
+		// completement de la requete avec la checkbox mes ventes non débutées cochée
+		if (ck_ventesnondebutees) {
+			
+		}
+		
+		// complement de la requete avec la checkbox ventes terminées cochée
+		if (ck_ventesterminees) {
+			
+		}
+		requete+=";";
 		try {
 			cnx=ConnectionProvider.seConnecter();
 			pstmt = cnx.prepareStatement(requete);
-			pstmt.setString(1, "'%" + article.getNomArticle() + "%'");
-			pstmt.setString(2, article.getCategorie().getLibelle());
+			
+			//ajout du nom d'article à la requete
+			pstmt.setString(1, "%" + article.getNomArticle() + "%");
+			
+			// si filtre différent de toutes : ajout du libellé de la categorie à la requete
+			if (!article.getCategorie().getLibelle().equalsIgnoreCase("Toutes")) {
+				pstmt.setString(2, article.getCategorie().getLibelle());
+			}
+			// si 
+			if(ck_mesencheresencours || ck_mesencheresremportees) {
+				pstmt.setInt(i, article.getUtilisateur().getNoUtilisateur());
+			}
+			
 			rs= pstmt.executeQuery();
 			while (rs.next()) {
 				Article art = new Article();

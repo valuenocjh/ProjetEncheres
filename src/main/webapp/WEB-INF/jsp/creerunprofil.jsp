@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Mon profil</title>
+<title>Création de profil</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>

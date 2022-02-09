@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Mon espace membre</title>
+<title>Mon profil</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
@@ -43,7 +43,7 @@
 	</div>
 
 	<div class="titre">
-		<a href="<%=request.getContextPath()%>/ModificationprofilServlet">Modifier</a>
+		<a href="<%=request.getContextPath()%>/modification">Modifier</a>
 	</div>
 
 </body>

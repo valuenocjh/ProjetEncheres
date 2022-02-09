@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Mon espace membre</title>
+<title>Modifier mon profil</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
@@ -16,7 +16,7 @@
 
  
 <div class="profil">
-    <form action="<%=request.getContextPath()%>/ModificationprofilServlet" method="post">
+    <form action="<%=request.getContextPath()%>/modification" method="post">
 	<div>
         <label>Pseudo: </label>
         <input type="text" name="pseudo" value="${rechercheUtilisateur.pseudo}" required>

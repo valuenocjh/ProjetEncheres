@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Connexion</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
@@ -15,7 +15,7 @@
 		<div class="seconnecter">
 			<div>
 				<!-- formulaire regroupant l'identifiant et le mot de passe-->
-				<form action="<%=request.getContextPath()%>/ConnexionServlet" method="post">
+				<form action="<%=request.getContextPath()%>/login" method="post">
 					<!-- div Identifiant-->
 					<div class="id">
 						<label>Identifiant : </label> <input type="text"

@@ -26,7 +26,7 @@ public class CompteServlet extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
+		response.sendRedirect("/ProjetEncheres/");
 
 	}
 
@@ -58,7 +58,7 @@ public class CompteServlet extends HttpServlet {
 		
 		article.setNomArticle(request.getParameter("filtre_nom"));
 		article.setUtilisateur((Utilisateur) request.getSession().getAttribute("rechercheUtilisateur"));
-		
+		System.out.println(article.getNomArticle());
 		
 		// recuperation de la categorie choisie par l'utilisateur
 		String categorie = request.getParameter("categorie");
@@ -67,7 +67,10 @@ public class CompteServlet extends HttpServlet {
 		Categorie nouvelleCategorie = new Categorie();
 		nouvelleCategorie.setLibelle(categorie);
 		article.setCategorie(nouvelleCategorie);
-
+		
+		// Recuperer Article pour Input text sur page connectee
+		
+		request.setAttribute("article", article);
 		
 		ArticleManager am = ArticleManager.getInstance();
 		List<Article> listeArticlesparcat;

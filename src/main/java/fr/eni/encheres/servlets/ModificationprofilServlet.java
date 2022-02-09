@@ -16,7 +16,7 @@ import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 
 
-@WebServlet("/ModificationprofilServlet")
+@WebServlet("/modification")
 public class ModificationprofilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -70,8 +70,7 @@ public class ModificationprofilServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("rechercheUtilisateur", UtilisateurModification);
 		userAModifier.setPseudo(request.getParameter("pseudo").trim().toLowerCase());
-
-		request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
+		response.sendRedirect(request.getContextPath() + "/Compte");
 		
 	}else {
 		//affichage du message d'erreur 

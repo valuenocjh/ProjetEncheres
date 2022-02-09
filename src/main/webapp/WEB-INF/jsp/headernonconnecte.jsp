@@ -3,13 +3,13 @@
  <div class="headercomplet">   
     <div class="headertop">
         <div>
-            <h3><a href="<%=request.getContextPath()%>/index.html">ENI Encheres</a></h3>
+            <h3><a href="<%=request.getContextPath()%>">ENI Encheres</a></h3>
         </div>
     
         <div>
             <nav>
                 <ul class="connexion">
-                    <li><a href="<%=request.getContextPath()%>/ConnexionServlet">S'inscrire - Se connecter</a> </li>               
+                    <li><a href="<%=request.getContextPath()%>/login">S'inscrire - Se connecter</a> </li>               
                 </ul>
             </nav>
         </div>

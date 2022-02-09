@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Nouvelle vente</title>
+<meta charset="UTF-8">
+<title>Mettre un article en vente</title>
 </head>
 <body>
 <main>
@@ -19,7 +19,7 @@
                     <input type="text" name="description" required/>
                 </div>
                 <div>
-                    <label>Catégorie : </label>
+                    <label>CatÃ©gorie : </label>
                     <select name="categorie">
                         <option>Informatique</option>
                         <option>Ameublement</option>
@@ -32,15 +32,15 @@
                     <input type="file" name="photo" accept="image/png, image/jpeg">
                 </div>
                 <div">
-                    <label>Mise à prix</label>
+                    <label>Mise Ã  prix</label>
                     <input type="number" name="miseaprix" required/>
                 </div>
                 <div">
-                    <label>Début de l'enchère : </label>
+                    <label>DÃ©but de l'enchÃ¨re : </label>
                     <input type="date" name="debutenchere" required/>
                 </div>
                 <div">
-                    <label>Fin de l'enchère : </label>
+                    <label>Fin de l'enchÃ¨re : </label>
                     <input type="date" name="finenchere" required/>
                 </div>
             </div>

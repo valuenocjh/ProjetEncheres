@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class DeconnexionServlet
  */
-@WebServlet("/DeconnexionServlet")
+@WebServlet("/logout")
 public class DeconnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -21,7 +21,8 @@ public class DeconnexionServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.removeAttribute("rechercheUtilisateur");
 		//retour à la jsp accueilnonconnecté
-		request.getRequestDispatcher("/WEB-INF/jsp/accueilnonconnecte.jsp").forward(request, response);
+		
+		response.sendRedirect("/ProjetEncheres/");
 	}
 
 	

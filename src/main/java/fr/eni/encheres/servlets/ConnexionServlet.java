@@ -16,7 +16,7 @@ import fr.eni.encheres.bll.UtilisateurManager;
 import fr.eni.encheres.bo.Utilisateur;
 import fr.eni.encheres.dal.DALException;
 
-@WebServlet("/ConnexionServlet")
+@WebServlet("/login")
 public class ConnexionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

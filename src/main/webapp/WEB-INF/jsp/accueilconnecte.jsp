@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Bienvenue</title>
+<title>Bienvenue ${rechercheUtilisateur.pseudo}</title>
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css">
 </head>
@@ -23,7 +23,8 @@
 
 					<div>
 						<!-- div qui contient l'image de la loupe et l'input text -->
-						<img src="" alt=""> <input type="text" name="filtre_nom">
+						<img src="" alt=""> 
+						<input type="text" name="filtre_nom" value="${article.nomArticle}">
 					</div>
 				</div>
 

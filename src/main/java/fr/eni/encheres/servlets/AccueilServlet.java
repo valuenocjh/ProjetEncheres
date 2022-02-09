@@ -20,7 +20,7 @@ import fr.eni.encheres.dal.DALException;
  * DoGet renvoie vers la jsp listedesenecheresnonconnecte
  * DoPost va gérer l'affichage de la liste des enchères avec les filtres
  */
-@WebServlet("/index.html")
+@WebServlet("")
 public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

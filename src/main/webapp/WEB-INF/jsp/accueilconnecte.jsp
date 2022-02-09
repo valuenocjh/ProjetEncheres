@@ -88,10 +88,11 @@
 					<!-- div informations article -->
 					<div>
 						<ul>
-							<li class="nomProduit">${article.nomArticle}</li>
+							
+							<li class="nomProduit"><a href="<%=request.getContextPath()%>/AffichageArticle?id=${article.noArticle}">${article.nomArticle}</a></li>
 							<li>Prix : ${article.prixVente} points</li>
 							<li>Fin de l'enchère : ${article.dateFinEncheres}</li>
-							<li>Vendeur : ${article.utilisateur.pseudo}</li>
+							<li>Vendeur : <a href="<%=request.getContextPath()%>/Monprofil?id=${article.utilisateur.noUtilisateur}">${article.utilisateur.pseudo}</a></li>
 						</ul>
 					</div>
 

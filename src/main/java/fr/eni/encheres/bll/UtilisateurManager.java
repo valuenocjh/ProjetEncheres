@@ -79,4 +79,10 @@ public class UtilisateurManager {
 			throw new BLLException("probleme dans la methode modifierUser()", e);
 		}
 	}
+	
+	public Utilisateur SelectbyID (int id) throws BLLException, DALException {
+		UtilisateurDAO ud = DAOFactory.getUserDAO();
+
+			return ud.selectById(id);
+		}	
 }

@@ -13,19 +13,19 @@
 <h3>Mon compte</h3>
 
 <p>Liste des enchères connecté</p>
-<p>pseudo: ${rechercheUtilisateur.pseudo}</p>
-<p>Nom : ${rechercheUtilisateur.nom}</p>
-<p>Prenom :  ${rechercheUtilisateur.prenom}</p>
-<p>email :  ${rechercheUtilisateur.email}</p>
-<p>telephone ${rechercheUtilisateur.telephone}</p>
-<p>rue ${rechercheUtilisateur.rue}</p>
-<p>code postal : ${rechercheUtilisateur.codePostal}</p>
-<p>ville : ${rechercheUtilisateur.ville}</p>
-<p>credit : ${rechercheUtilisateur.credit}</p>
+<p>pseudo: ${user.pseudo}</p>
+<p>Nom : ${user.nom}</p>
+<p>Prenom :  ${user.prenom}</p>
+<p>email :  ${user.email}</p>
+<p>telephone ${user.telephone}</p>
+<p>rue ${user.rue}</p>
+<p>code postal : ${user.codePostal}</p>
+<p>ville : ${user.ville}</p>
+<p>credit : ${user.credit}</p>
 
 <!-- bouton retour -->
 
 </div>
- -->
+ 
 </body>
 </html>

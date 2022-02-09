@@ -65,6 +65,10 @@ public class ArticleManager {
 		return ad.selectListeParCat(article, ck_encheresouvertes, ck_mesencheresencours, ck_mesencheresremportees, ck_mesventesencours, ck_ventesnondebutees, ck_ventesterminees);
 	}
 	
+	public Article selectArticleById(int id) throws DALException {
+		ArticleDAO ad = DAOFactory.getArticleDAO();
+		return ad.selectArticleById(id);
+	}
 	
 	
 }

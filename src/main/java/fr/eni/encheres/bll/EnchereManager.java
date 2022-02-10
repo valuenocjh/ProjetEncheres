@@ -30,4 +30,14 @@ public class EnchereManager {
 			throw new BLLException("probleme dans la methode insertEnchere()", e);
 		}
 	}
+	
+	public boolean selectEnchere(Enchere enchere) {
+		EnchereDAO ed = DAOFactory.getEnchereDAO();
+		return ed.selectEnchere(enchere);
+	}
+	
+	public void updateEnchere(Enchere enchere) {
+		EnchereDAO ed = DAOFactory.getEnchereDAO();
+		ed.updateEnchere(enchere);
+	}
 }

@@ -7,6 +7,7 @@
 
 body {
 	background-color:#FFFCC9;
+	overflow-x: hidden;
 }
 
 /* header */

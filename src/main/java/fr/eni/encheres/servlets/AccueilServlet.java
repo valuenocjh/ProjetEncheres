@@ -1,6 +1,9 @@
 package fr.eni.encheres.servlets;
 
 import java.io.IOException;
+
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -25,6 +28,7 @@ public class AccueilServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
 		ArticleManager am = ArticleManager.getInstance();
 		List<Article> listeArticles;

@@ -23,28 +23,34 @@ public class AffichageProfilServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			int id = Integer.valueOf(request.getParameter("id"));
-			Utilisateur utilisateur = UtilisateurManager.getInstance().SelectbyID(id);
-			if (utilisateur == null) {
-				throw new Exception("Utilisateur introuvable!");
-			}
-			request.setAttribute("utilisateur", utilisateur);
-
-			// trois conditions, si l'utilisateur cherché = mon id alors envoyer vers mon
-			// profil
-			// avec le bouton modifier (affichagemonprofil.jsp
-			// si l'utilisateur recherché = null alors envoyer vers liste encheres
-			// si l'utilisateur recherché existe, envoyer vers
-			// affichageprofilutilisateur.jsp
-			
-			// erreur a corriger : si erreur, envoi vers accueil a mettre en place
-			// et si utilisateur connecté, envoyer vers la bonne jsp
-
-			if (utilisateur == request.getSession().getAttribute("rechercheUtilisateur")) {
-				request.getRequestDispatcher("/WEB-INF/jsp/affichagemonprofil.jsp").forward(request, response);
+			if(request.getParameter("id")!=null) {
+				int id = Integer.valueOf(request.getParameter("id"));
+				Utilisateur utilisateur = UtilisateurManager.getInstance().SelectbyID(id);
+				// si l'utilisateur recherché = null alors envoyer vers liste encheres
+				if (utilisateur.getPseudo() == null) {
+					throw new Exception("Utilisateur introuvable!");
+				}
+				request.setAttribute("utilisateur", utilisateur);
+				Utilisateur rechercheUtilisateur = (Utilisateur) request.getSession().getAttribute("rechercheUtilisateur");
+				
+				// trois conditions, si l'utilisateur cherché = mon id alors envoyer vers mon
+				// profil
+				// avec le bouton modifier (affichagemonprofil.jsp
+				// si l'utilisateur recherché existe, envoyer vers
+				// affichageprofilutilisateur.jsp
+				
+				// erreur a corriger : si erreur, envoi vers accueil a mettre en place
+				// et si utilisateur connecté, envoyer vers la bonne jsp
+				
+				if (utilisateur.getPseudo().equals(rechercheUtilisateur.getPseudo())) {
+					request.getRequestDispatcher("/WEB-INF/jsp/affichagemonprofil.jsp").forward(request, response);
+				} else {
+					request.setAttribute("user", utilisateur);
+					request.getRequestDispatcher("WEB-INF/jsp/affichageprofil.jsp").forward(request, response);
+				}
+				
 			} else {
-				request.setAttribute("user", utilisateur);
-				request.getRequestDispatcher("WEB-INF/jsp/affichageprofil.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/jsp/affichagemonprofil.jsp").forward(request, response);
 			}
 		} catch (Exception e) {
 			response.sendRedirect("/ProjetEncheres/");

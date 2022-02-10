@@ -56,23 +56,43 @@ body {
     justify-content: space-around;
 }
 
-.articles {
+.article {
+	position:relative;
+	padding-top:30px;
+	padding-bottom:30px;
+	border-style: solid;
+	padding-left: 20px;
+	padding-right: 20px;
+	box-shadow: 5px 5px 5px #c0c0c0;
+	border-radius: 25px;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+        justify-content: center;
+    gap: 10%;
 }
 
 
-.article {
-	border-style: solid;
-	width:25vw;
-	height: 25vh;
-	padding-left: 20px;
-	box-shadow: 5px 5px 5px #c0c0c0;
-	border-radius: 25px;
+.article:hover {
+	box-shadow: 5px 5px 5px #0f27e094;
+}
+
+.article_detail {
+	
 }
 
 .formulaireAchatsVentes {
     display: flex;
+    justify-content: center;
+    gap: 5vw;
+    
+    margin-top: 2vh;
+    box-shadow: 9px 9px 11px #c0c09a;
+	background-color: navajowhite;
+    width: 40vw;
+    min-width: 40vw;
+    border-radius: 15px;
+    height: 14vh;
+    align-items: center;
 }
 .achatscheck {
 	display: flex;
@@ -125,11 +145,12 @@ body {
 }
 
 .touteslesencheres {
-	display :flex;
-	flex-wrap: wrap;
+	display :grid;
+	grid-template-columns: repeat(3,1fr);
 	margin-top: 10vh;
 	gap: 15px;
-	justify-content: center;
+	    margin-left: 8vw;
+    margin-right: 8vw;
 }
 
 /* page affichage article */
@@ -141,22 +162,89 @@ body {
 }
 
 .affichagearticle_img {
-	border-style: solid;
-    padding: 5%;
-    height: 20vh;
-    width:20vw;
+
+    box-shadow: 0px 0px 21px #15368d;
+	border-radius: 25px;
+    
     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: fit-content;
+    width: 30vw;
+    height: 30vh;
+    min-height: fit-content;
+    }
+    
+.affichagearticle_infos {
+		display: flex;
+    box-shadow: 0px 0px 21px #15368d;
+	border-radius: 25px;
+    min-width: fit-content;
+    width: 30vw;
+    height: 30vh;
+    min-height: fit-content;
     justify-content: center;
     align-items: center;
     }
     
-.affichagearticle_infos {
-	border-style: solid;
-    padding: 5%;
-    height: 20vh;
-    width:20vw;
-    }
-    
+.affichagearticle_infos_flex {
+
+}
 .imgarticle {
-	width:50%;
+	max-width:200px;
+}
+
+.filtresetrechercher{
+    display: flex;
+    justify-content: center;
+}
+
+.filtresetrechercher form {
+	box-shadow: 9px 9px 11px #c0c09a;
+	background-color: navajowhite;
+	align-items: center;
+	gap: 3vw;
+    width: 40vw;
+      min-width: fit-content;
+    border-radius: 15px;
+    height: 45px;
+}
+
+.filtrenom {
+	display:flex;
+}
+
+.logo {
+    width: 15vh;
+    	box-shadow: 9px 9px 11px #c0c09a;
+}
+
+.logo:hover {
+    	box-shadow: 9px 9px 11px #ffffff;
+}
+
+/*  pageconnect�*/
+.centrageformulaireachatsventes {
+	align-self: center;
+}
+
+.nomProduit {
+	text-underline-position: under;
+    font-size: larger;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-family: cursive;
+}
+
+.piece {
+	position:absolute;
+    width: 20%;
+    top:0px;
+    right:0px;
+}
+
+.valeurarticle {
+	position:absolute;
+	    top:30px;
+    right:40px;
 }

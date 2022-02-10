@@ -2,7 +2,7 @@
    <div class="headercomplet">
     <div class="headertop">
         <div>
-            <h3><a href="<%=request.getContextPath()%>">ENI Encheres</a></h3>
+           <a href="<%=request.getContextPath()%>"><img class="logo" src="<%=request.getContextPath()%>/assets/img/logo.jpg" alt="logo Encheres"></a>
         </div>
     
 

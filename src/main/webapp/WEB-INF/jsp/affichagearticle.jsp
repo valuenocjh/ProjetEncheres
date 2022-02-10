@@ -18,28 +18,30 @@
 			<img class="imgarticle" src="<%=request.getContextPath()%>/assets/img/objet.png" alt="image">
 		</div>
 		<div class="affichagearticle_infos">
-			<div>
-				<ul>
-					<li><p>${article.nomArticle}</p></li>
-					<li><p>Description : ${article.description}</p></li>
-					<li><p>Catégorie : ${article.categorie.libelle}</p></li>
-					<li><p>Meilleure offre : ${article.prixVente} </p></li>
-					<li><p>Mise à prix : ${article.prixInitial}</p></li>
-					<li><p>Fin de l'enchère : ${article.dateFinEncheres}</p></li>
-					<li><p>Retrait : ${article.utilisateur.rue} </p></li>
-				</ul>
+			<div class="affichagearticle_infos_flex">		
+				<div>
+					<ul>
+						<li><p class="nomProduit">${article.nomArticle}</p></li>
+						<br>
+						<li><p>Description : ${article.description}</p></li>
+						<li><p>Catégorie : ${article.categorie.libelle}</p></li>
+						<li><p>Meilleure offre : ${article.prixVente} </p></li>
+						<li><p>Mise à prix : ${article.prixInitial}</p></li>
+						<li><p>Fin de l'enchère : ${article.dateFinEncheres}</p></li>
+						<li><p>Retrait : ${article.utilisateur.rue} </p></li>
+					</ul>
+				</div>
+		
+				<div>
+					<form action="<%=request.getContextPath()%>/encherirServlet" method="post">
+						<label for="encherir">Ma proposition : </label>
+						<input type="number" name="encherir" value="${article.prixVente}">
+						<input type="submit" value="Enchérir">
+					</form>
+				</div>
 			</div>
-	
-			<div>
-				<form action="<%=request.getContextPath()%>/encherirServlet" method="post">
-					<label for="encherir">Ma proposition : </label>
-					<input type="number" name="encherir" value="${article.prixVente}">
-					<input type="submit" value="Enchérir">
-				</form>
-			</div>
-		</div>
 
-</div>
+	</div>
 
 </body>
 </html>

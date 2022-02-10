@@ -98,7 +98,7 @@ public class VendreArticleServlet extends HttpServlet {
 			em.insertEnchere(enchere);
 			
 			//renvoi vers la page accueilconnecte
-			request.getRequestDispatcher("/WEB-INF/jsp/accueilconnecte.jsp").forward(request, response);
+			response.sendRedirect("/ProjetEncheres/");
 		} catch (ParseException | BLLException | DALException e) {
 			e.printStackTrace();
 		}

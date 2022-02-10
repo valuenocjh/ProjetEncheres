@@ -13,19 +13,15 @@
 
 	<%@include file="headerconnecte.jsp"%>
 	<main class="mainConnecteEtNonConnecte">
-		<!-- div contenant le formulaire -->
-		<div>
+		<!-- div contenant le formulaire  avec les filtres-->
+		<div class="filtresetrechercher">
 			<form action="<%=request.getContextPath()%>/Compte" method="post">
-				<div class="filtresetrechercher">
+				<div>
 					<div>
-						<label for="filtre_nom">Filtres</label>
-					</div>
-
-					<div>
-						<!-- div qui contient l'image de la loupe et l'input text -->
-						<img src="" alt=""> 
+						<label for="filtre_nom">Filtres : </label>
 						<input type="text" name="filtre_nom" value="${article.nomArticle}">
 					</div>
+
 				</div>
 
 				<div>
@@ -42,6 +38,9 @@
 				</div>
 			
 		</div>
+		
+		<!-- div contenant les formulaires achats et ventes -->
+		<div class="centrageformulaireachatsventes">
 					<div class="formulaireAchatsVentes">
 
 
@@ -71,37 +70,39 @@
 
 
 					</div>
-					<input type="submit" value="Rechercher">
+		</div>			
 				</div>
 			</form>
 		</div>
+
 		<!-- div contenant les images et informations des ench�res -->
-		<div class="touteslesencheres">
-
-
-			<c:forEach items="${listeArticles}" var="article">
-				<div class="article">
-					<!-- div image -->
-					<div>
-						<img src="" alt="">
-					</div>
-					<!-- div informations article -->
-					<div>
-						<ul>
+	<div class="touteslesencheres">
+		<c:forEach items="${listeArticles}" var="article">
+			
+			
+				<span class="article">
+				<a href="<%=request.getContextPath()%>/AffichageArticle?id=${article.noArticle}">
+							<img class="piece" src="<%=request.getContextPath()%>/assets/img/piece.png" alt="piece">
+							<h2 class="valeurarticle">${article.prixVente}</h2>
+							<img class="imgarticle" src="<%=request.getContextPath()%>/assets/img/objet.png" alt="article">
 							
-							<li class="nomProduit"><a href="<%=request.getContextPath()%>/AffichageArticle?id=${article.noArticle}">${article.nomArticle}</a></li>
-							<li>Prix : ${article.prixVente} points</li>
-							<li>Fin de l'enchère : ${article.dateFinEncheres}</li>
-							<li>Vendeur : <a href="<%=request.getContextPath()%>/Monprofil?id=${article.utilisateur.noUtilisateur}">${article.utilisateur.pseudo}</a></li>
-						</ul>
-					</div>
-
-				</div>
-
-			</c:forEach>
-		</div>
-
+							<div>
+								<ul>
+		
+									<li class="nomProduit"><a href="<%=request.getContextPath()%>/AffichageArticle?id=${article.noArticle}">${article.nomArticle}</a></li>
+									<br>
+									<li>Fin de l'enchère : ${article.dateFinEncheres}</li>
+									<li>Vendeur : <a href="<%=request.getContextPath()%>/Monprofil?id=${article.utilisateur.noUtilisateur}">${article.utilisateur.pseudo}</a></li>
+								</ul>
+							</div>
+				</a>
+				</span>
+			
+		</c:forEach>
+		
+	</div>
 	</main>
+
 
 
 </body>

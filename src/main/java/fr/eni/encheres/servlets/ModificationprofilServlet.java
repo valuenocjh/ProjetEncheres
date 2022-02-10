@@ -54,7 +54,7 @@ public class ModificationprofilServlet extends HttpServlet {
 		UtilisateurModification.setMotDePasse(request.getParameter("nouveaumotdepasse"));
 		PrintWriter out = response.getWriter();
 
-		if(UtilisateurModification.getPseudo().matches("\\p{Alnum}+") & request.getParameter("nouveaumotdepasse").equals(request.getParameter("confirmation")) & request.getParameter("motdepasse").equals(userAModifier.getMotDePasse())) {
+		if(UtilisateurModification.getPseudo().matches("\\p{Alnum}+") & request.getParameter("nouveaumotdepasse").equals(request.getParameter("confirmation")) & request.getParameter("motdepasse").equals(userAModifier.getMotDePasse()) &  request.getParameter("email").contains("@") & request.getParameter("telephone").matches("\\d+") & request.getParameter("codepostal").matches("\\d+")) {
 		//appel de la bll pour créer un utilisateurManager nommé um
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		

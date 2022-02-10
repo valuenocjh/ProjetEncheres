@@ -49,8 +49,8 @@ public class CreationprofilServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 
 //  Gestion des mots de passe si différents et pseudo en alphanumerique
-
-		if ( identifiant.matches("\\p{Alnum}+") & confirmation.equals(motdepasse)) {
+		
+		if ( identifiant.matches("\\p{Alnum}+") & confirmation.equals(motdepasse) & email.contains("@") & telephone.matches("\\d+") & codepostal.matches("\\d+")) {
 			
 			Utilisateur nouvelutilisateur = new Utilisateur();
 			nouvelutilisateur.setPseudo(identifiant);
@@ -79,7 +79,7 @@ public class CreationprofilServlet extends HttpServlet {
 					
 				} else {
 					//affichage du message d'erreur si aucun compte n'est trouvé
-					out.print("<p style=\"color:red\">caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé</p>");    
+					out.print("<p style=\"color:red\">Erreur dans le formulaire vérifier les champs</p>");    
 			        RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp");    
 			        rd.include(request,response);
 					request.setAttribute("error", "numeroderreur");
@@ -92,7 +92,7 @@ public class CreationprofilServlet extends HttpServlet {
 		} else {
 			//affichage message d'erreur si login ou mot de passe n'est pas bon
 			System.out.println("caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé");
-			out.print("<p style=\"color:red\">caracteres alphanumeriques sur le pseudo ou mot de passe mal confirmé</p>");    
+			out.print("<p style=\\\"color:red\\\">Erreur dans le formulaire vérifier les champs</p>");    
 	        RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp");    
 	        rd.include(request,response);
 			

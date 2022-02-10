@@ -50,8 +50,7 @@ public class AccueilServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-// a retirer du code
-System.out.println("requete utilisée ?");
+
 		Article article = new Article();
 		
 		article.setNomArticle(request.getParameter("filtre_nom"));
@@ -71,7 +70,6 @@ System.out.println("requete utilisée ?");
 		try {
 			selectListeParFiltresModeDeconnecte = am.selectListeParFiltresModeDeconnecte(article);
 			request.setAttribute("listeArticles", selectListeParFiltresModeDeconnecte);
-			System.out.println(selectListeParFiltresModeDeconnecte.size());
 		} catch (DALException e) {
           e.printStackTrace();
 		}

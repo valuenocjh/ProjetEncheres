@@ -168,50 +168,58 @@ public class ArticleDAOImpl implements ArticleDAO {
 		int i = 1;
 
 		// création de la requette avec le nom de l'article
-		String requete = "SELECT * FROM Articles INNER JOIN Categories ON Articles.CATEGORIE_no_categorie = Categories.no_categorie INNER JOIN Utilisateurs ON Articles.UTILISATEUR_no_utilisateur=Utilisateurs.no_utilisateur LEFT JOIN Encheres ON Articles.no_article = Encheres.ARTICLE_no_article WHERE nom_article LIKE :nom_article ";
+		String requete = "SELECT * FROM Articles INNER JOIN Categories ON Articles.CATEGORIE_no_categorie = Categories.no_categorie INNER JOIN Utilisateurs ON Articles.UTILISATEUR_no_utilisateur=Utilisateurs.no_utilisateur LEFT JOIN Encheres ON Articles.no_article = Encheres.ARTICLE_no_article WHERE nom_article LIKE :nom_article";
 
 		// complement de la requete avec le traitement des categories
 		if (!article.getCategorie().getLibelle().equalsIgnoreCase("Toutes")) {
-			requete += " AND libelle = :categorie_libelle";
+			requete += "  AND libelle = :categorie_libelle ";
 			i++;
 		}
 
+		String subRequest = "";
+
+		
 		// completement de la requete avec la checkbox encheres ouvertes cochée
 		if (ck_encheresouvertes) {
-			requete += " AND date_fin_encheres >= GETDATE() AND date_debut_encheres <= GETDATE() ";
+			subRequest += "(date_fin_encheres >= GETDATE() AND date_debut_encheres <= GETDATE()) OR";
 		}
 
 		// complement de la requete avec la checkbox mes encheres en cours cochee
 		if (ck_mesencheresencours) {
-			requete += " AND date_fin_encheres >= GETDATE() AND Encheres.UTILISATEUR_no_utilisateur = :numero_utilisateur";
+			subRequest += "(date_fin_encheres >= GETDATE() AND Encheres.UTILISATEUR_no_utilisateur = :numero_utilisateur) OR";
 			i++;
 		}
 
 		// completement de la requete avec la checkbox mes encheres remportées cochée
 		if (ck_mesencheresremportees) {
-			requete += " AND Encheres.UTILISATEUR_no_utilisateur = :numero_utilisateur AND Encheres.date_enchere < GETDATE() AND Encheres.montant_enchere = (SELECT MAX(montant_enchere) FROM Encheres e2 Where e2.ARTICLE_no_article = Articles.no_article)";
+			subRequest += "(Encheres.UTILISATEUR_no_utilisateur = :numero_utilisateur AND Encheres.date_enchere < GETDATE() AND Encheres.montant_enchere = (SELECT MAX(montant_enchere) FROM Encheres e2 Where e2.ARTICLE_no_article = Articles.no_article)) OR";
 			i++;
 		}
 
 		// completement de la requete avec la checkbox mes ventes en cours cochée
 		if (ck_mesventesencours) {
-			requete += " AND Articles.UTILISATEUR_no_utilisateur = :numero_utilisateur AND date_fin_encheres >= GETDATE() AND date_debut_encheres <= GETDATE()";
+			subRequest += "(Articles.UTILISATEUR_no_utilisateur = :numero_utilisateur AND date_fin_encheres >= GETDATE() AND date_debut_encheres <= GETDATE()) OR";
 			i++;
 		}
 
 		// completement de la requete avec la checkbox mes ventes non débutées cochée
 		if (ck_ventesnondebutees) {
-			requete += " AND Articles.UTILISATEUR_no_utilisateur = :numero_utilisateur AND date_debut_encheres > GETDATE()";
+			subRequest += "(Articles.UTILISATEUR_no_utilisateur = :numero_utilisateur AND date_debut_encheres > GETDATE()) OR";
 			i++;
 		}
 
 		// complement de la requete avec la checkbox ventes terminées cochée
 		if (ck_ventesterminees) {
-			requete += " AND Articles.UTILISATEUR_no_utilisateur = :numero_utilisateur AND date_fin_encheres < GETDATE()";
+			subRequest += "(Articles.UTILISATEUR_no_utilisateur = :numero_utilisateur AND date_fin_encheres < GETDATE()) OR";
 			i++;
 		}
-
-		requete += ";";
+		
+		if (!subRequest.isEmpty()) {
+			subRequest = " AND (" + subRequest.substring(0, subRequest.length() - 2) + ")";
+		}
+		
+		
+		requete += subRequest + ";";
 		try {
 			cnx = ConnectionProvider.seConnecter();
 
@@ -235,6 +243,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 						.replaceAll(":nom_article", "'%" + article.getNomArticle() + "%'");			
 
 
+	System.out.println(requete);
 
 
 			pstmt = cnx.prepareStatement(requete);

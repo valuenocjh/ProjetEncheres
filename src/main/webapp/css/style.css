@@ -1,20 +1,20 @@
+/* concerne toute la page */
 *{
     margin: 0;
     padding: 0;
     list-style-type: none;
-   
 }
 
 body {
 	background-color:#FFFCC9;
 }
-/* header */
 
+/* header */
 .headercomplet {
 	    box-shadow: 5px 5px 5px #c0c0c0;
 }
 .headertop {
-
+	
     display: flex;
     justify-content: space-between;
     padding-top: 2vh;
@@ -24,10 +24,12 @@ body {
     background-color: #429E9D ;
     border-bottom: #FFFCC9;
     border-bottom-style: solid;
-    height: 3vh;
+    max-height: 50px;
+    min-height: 40px;
 }
 
 .headerbottom {
+		width:100vw;
     display: flex;
     justify-content: center;
     padding-top: 2vh;
@@ -35,7 +37,8 @@ body {
     padding-right: 2vw;
     padding-bottom: 2vh;
     background-color: #429E9D;
-    height: 3vh;
+    max-height: 50px;
+    min-height: 40px;
 }
 .connexion {
     display: flex;
@@ -44,7 +47,6 @@ body {
 }
 
 /* main accueilconnecte et accueilnonconnecte*/
-
 .mainConnecteEtNonConnecte {
     margin-top: 15vh;
     display: flex;
@@ -74,10 +76,6 @@ body {
 
 .article:hover {
 	box-shadow: 5px 5px 5px #0f27e094;
-}
-
-.article_detail {
-	
 }
 
 .formulaireAchatsVentes {
@@ -215,8 +213,10 @@ body {
 }
 
 .logo {
-    width: 15vh;
-    	box-shadow: 9px 9px 11px #c0c09a;
+	min-width:20vh;
+    width: 20vh;
+    max-width:25;
+    box-shadow: 9px 9px 11px #c0c09a;
 }
 
 .logo:hover {

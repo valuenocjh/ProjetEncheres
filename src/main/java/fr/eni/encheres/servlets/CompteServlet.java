@@ -73,10 +73,10 @@ public class CompteServlet extends HttpServlet {
 		request.setAttribute("article", article);
 		
 		ArticleManager am = ArticleManager.getInstance();
-		List<Article> listeArticlesparcat;
+		List<Article> selectListeParFiltresModeConnecte;
 		try {
-			listeArticlesparcat = am.selectListeParCat(article, ck_encheresouvertes, ck_mesencheresencours, ck_mesencheresremportees, ck_mesventesencours, ck_ventesnondebutees, ck_ventesterminees);
-			request.setAttribute("listeArticles", listeArticlesparcat);
+			selectListeParFiltresModeConnecte = am.selectListeParFiltresModeConnecte(article, ck_encheresouvertes, ck_mesencheresencours, ck_mesencheresremportees, ck_mesventesencours, ck_ventesnondebutees, ck_ventesterminees);
+			request.setAttribute("listeArticles", selectListeParFiltresModeConnecte);
 		} catch (DALException e) {
           e.printStackTrace();
 		}

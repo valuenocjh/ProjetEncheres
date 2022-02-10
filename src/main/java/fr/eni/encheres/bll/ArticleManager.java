@@ -60,9 +60,14 @@ public class ArticleManager {
 		return ad.selectArticle(article);
 	}
 	
-	public List<Article> selectListeParCat (Article article, boolean ck_encheresouvertes, boolean ck_mesencheresencours, boolean ck_mesencheresremportees, boolean ck_mesventesencours, boolean ck_ventesnondebutees, boolean ck_ventesterminees) throws DALException {
+	public List<Article> selectListeParFiltresModeConnecte (Article article, boolean ck_encheresouvertes, boolean ck_mesencheresencours, boolean ck_mesencheresremportees, boolean ck_mesventesencours, boolean ck_ventesnondebutees, boolean ck_ventesterminees) throws DALException {
 		ArticleDAO ad = DAOFactory.getArticleDAO();
-		return ad.selectListeParCat(article, ck_encheresouvertes, ck_mesencheresencours, ck_mesencheresremportees, ck_mesventesencours, ck_ventesnondebutees, ck_ventesterminees);
+		return ad.selectListeParFiltresModeConnecte(article, ck_encheresouvertes, ck_mesencheresencours, ck_mesencheresremportees, ck_mesventesencours, ck_ventesnondebutees, ck_ventesterminees);
+	}
+	
+	public List<Article> selectListeParFiltresModeDeconnecte (Article article) throws DALException {
+		ArticleDAO ad = DAOFactory.getArticleDAO();
+		return ad.selectListeParFiltresModeDeconnecte(article);
 	}
 	
 	public Article selectArticleById(int id) throws DALException {

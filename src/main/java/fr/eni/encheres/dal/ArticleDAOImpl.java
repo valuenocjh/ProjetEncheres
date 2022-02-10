@@ -1,6 +1,6 @@
 package fr.eni.encheres.dal;
 
-import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -9,6 +9,7 @@ import java.util.List;
 
 import com.sun.net.httpserver.Authenticator.Result;
 
+import java.sql.Connection;
 import java.sql.Date;
 import fr.eni.encheres.bo.Article;
 import fr.eni.encheres.bo.Categorie;
@@ -156,13 +157,14 @@ public class ArticleDAOImpl implements ArticleDAO {
 	}
 
 	@Override
-	public List<Article> selectListeParCat(Article article, boolean ck_encheresouvertes, boolean ck_mesencheresencours,
+	// méthode de recherche avec filtres en mode connecte
+	public List<Article> selectListeParFiltresModeConnecte(Article article, boolean ck_encheresouvertes, boolean ck_mesencheresencours,
 			boolean ck_mesencheresremportees, boolean ck_mesventesencours, boolean ck_ventesnondebutees,
 			boolean ck_ventesterminees) throws DALException {
 		Connection cnx = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<Article> listeArticlesParCat = new ArrayList<Article>();
+		List<Article> selectListeParFiltresModeConnecte = new ArrayList<Article>();
 		int i = 1;
 
 		// création de la requette avec le nom de l'article
@@ -225,13 +227,15 @@ public class ArticleDAOImpl implements ArticleDAO {
 			 * if(ck_mesencheresencours || ck_mesencheresremportees || ck_mesventesencours
 			 * || ck_ventesnondebutees || ck_ventesterminees) { pstmt.setInt(3,
 			 * article.getUtilisateur().getNoUtilisateur()); }
-			 */
+			 */ 
+					
 
-			requete = requete.replaceAll(":categorie_libelle", "'" + article.getCategorie().getLibelle() + "'")
-					.replaceAll(":numero_utilisateur", String.valueOf(article.getUtilisateur().getNoUtilisateur()))
-					.replaceAll(":nom_article", "'%" + article.getNomArticle() + "%'");
+	requete = requete.replaceAll(":categorie_libelle", "'" + article.getCategorie().getLibelle() + "'")
+						.replaceAll(":numero_utilisateur", String.valueOf(article.getUtilisateur().getNoUtilisateur()))
+						.replaceAll(":nom_article", "'%" + article.getNomArticle() + "%'");			
 
-			System.out.println(requete);
+
+
 
 			pstmt = cnx.prepareStatement(requete);
 			rs = pstmt.executeQuery();
@@ -242,16 +246,61 @@ public class ArticleDAOImpl implements ArticleDAO {
 				art.setPrixVente(rs.getInt("prix_vente"));
 				art.setDateFinEncheres(rs.getDate("date_fin_encheres"));
 				art.setUtilisateur((new UtilisateurDAOImpl()).selectById(rs.getInt("UTILISATEUR_no_utilisateur")));
-
-				listeArticlesParCat.add(art);
+				selectListeParFiltresModeConnecte.add(art);
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			ConnectionProvider.seDeconnecter(cnx, pstmt);
 		}
 
-		return listeArticlesParCat;
+		return selectListeParFiltresModeConnecte;
+	}
+	
+	@Override
+	// méthode de recherche avec filtres en mode connecte
+	public List<Article> selectListeParFiltresModeDeconnecte(Article article) throws DALException {
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Article> selectListeParFiltresModeDeconnecte = new ArrayList<Article>();
+		int i = 1;
+
+		// création de la requette avec le nom de l'article
+		String requete = "SELECT * FROM Articles INNER JOIN Categories ON Articles.CATEGORIE_no_categorie = Categories.no_categorie INNER JOIN Utilisateurs ON Articles.UTILISATEUR_no_utilisateur=Utilisateurs.no_utilisateur LEFT JOIN Encheres ON Articles.no_article = Encheres.ARTICLE_no_article WHERE nom_article LIKE :nom_article ";
+
+		// complement de la requete avec le traitement des categories
+		if (!article.getCategorie().getLibelle().equalsIgnoreCase("Toutes")) {
+			requete += " AND libelle = :categorie_libelle";
+			i++;
+		}
+
+		requete += ";";
+		try {
+			cnx = ConnectionProvider.seConnecter();
+
+	requete = requete.replaceAll(":categorie_libelle", "'" + article.getCategorie().getLibelle() + "'")
+						.replaceAll(":nom_article", "'%" + article.getNomArticle() + "%'");			
+
+
+			pstmt = cnx.prepareStatement(requete);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				Article art = new Article();
+				art.setNoArticle(rs.getInt("no_article"));
+				art.setNomArticle(rs.getString("nom_article"));
+				art.setPrixVente(rs.getInt("prix_vente"));
+				art.setDateFinEncheres(rs.getDate("date_fin_encheres"));
+				art.setUtilisateur((new UtilisateurDAOImpl()).selectById(rs.getInt("UTILISATEUR_no_utilisateur")));
+				selectListeParFiltresModeDeconnecte.add(art);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			ConnectionProvider.seDeconnecter(cnx, pstmt);
+		}
+
+		return selectListeParFiltresModeDeconnecte;
 	}
 
 }

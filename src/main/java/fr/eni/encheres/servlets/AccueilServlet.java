@@ -46,7 +46,8 @@ public class AccueilServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+// a retirer du code
+System.out.println("requete utilisée ?");
 		Article article = new Article();
 		
 		article.setNomArticle(request.getParameter("filtre_nom"));
@@ -59,18 +60,21 @@ public class AccueilServlet extends HttpServlet {
 		article.setCategorie(nouvelleCategorie);
 
 		ArticleManager am = ArticleManager.getInstance();
-		List<Article> listeArticlesparcat;
+		List<Article> selectListeParFiltresModeDeconnecte;
+		
+
+		
 		try {
-			listeArticlesparcat = am.selectListeParCat(article, false, false, false, false, false, false);
-			request.setAttribute("listeArticles", listeArticlesparcat);
-			System.out.println(listeArticlesparcat.size());
+			selectListeParFiltresModeDeconnecte = am.selectListeParFiltresModeDeconnecte(article);
+			request.setAttribute("listeArticles", selectListeParFiltresModeDeconnecte);
+			System.out.println(selectListeParFiltresModeDeconnecte.size());
 		} catch (DALException e) {
           e.printStackTrace();
 		}
 		
 		
 		request.getRequestDispatcher("/WEB-INF/jsp/accueilnonconnecte.jsp").forward(request, response);
-		//response.sendRedirect(request.getContextPath() + "/index.html");
+		//response.sendRedirect("/ProjetEncheres/");
 		
 		
 	}

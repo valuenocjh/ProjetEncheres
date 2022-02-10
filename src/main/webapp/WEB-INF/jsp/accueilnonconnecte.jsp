@@ -13,9 +13,10 @@
 </head>
 <body>
 	<%@include file="headernonconnecte.jsp"%>
-	<main class="mainConnecteEtNonConnecte"> <!-- div contenant le formulaire  avec les filtres-->
+	<main class="mainConnecteEtNonConnecte">
+	<!-- div contenant le formulaire  avec les filtres-->
 	<div class="filtresetrechercher">
-		<form action="<%=request.getContextPath()%>/Compte" method="post">
+		<form action="<%=request.getContextPath()%>/" method="post">
 			<div>
 				<div>
 					<label for="filtre_nom">Filtres : </label> <input type="text"

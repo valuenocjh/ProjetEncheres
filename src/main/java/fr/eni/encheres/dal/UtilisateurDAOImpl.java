@@ -22,7 +22,7 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 	private final static String SELECT_INFO = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit	FROM Utilisateurs WHERE (pseudo = ? or email =?);";
 	private final static String SELECT_BY_ID = "SELECT no_utilisateur, pseudo, nom, prenom, email, telephone, rue, code_postal, ville, credit	FROM Utilisateurs WHERE (no_utilisateur = ? );";
 	private final static String MODIFIER_PROFIL = "UPDATE Utilisateurs SET pseudo = ?, nom = ?, prenom = ?, email = ?, telephone = ?, rue = ? ,code_postal = ?, ville = ?, mot_de_passe = ? WHERE pseudo = ?;";
-
+	private final static String SUP_COMPTE ="DELETE FROM Utilisateurs Where no_utilisateur = ?;";
 	@Override
 	// méthode pour insérer un utilisateur dans la base de données
 	public void insert(Utilisateur utilisateur) throws DALException {
@@ -194,5 +194,21 @@ public class UtilisateurDAOImpl implements UtilisateurDAO {
 		}
 
 	}
+	
+	public void supUser (Utilisateur utilisateur) throws DALException { 
+		Connection cnx = null;
+		PreparedStatement pstmt = null;
+		
+		try {
+			cnx = ConnectionProvider.seConnecter();
+			pstmt = cnx.prepareStatement(SUP_COMPTE);
+			pstmt.setInt(1, utilisateur.getNoUtilisateur());
+			pstmt.executeUpdate();
+		
+	} catch (SQLException e) {
+		throw new DALException("probleme dans la methode SupUser()", e);
+	} finally {
+		ConnectionProvider.seDeconnecter(cnx, pstmt);
+	}
 
-}
+} }

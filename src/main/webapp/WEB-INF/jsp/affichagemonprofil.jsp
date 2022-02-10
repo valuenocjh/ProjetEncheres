@@ -44,6 +44,7 @@
 
 	<div class="titre">
 		<a href="<%=request.getContextPath()%>/modification">Modifier</a>
+		<a href="<%=request.getContextPath()%>/supprimer">Supprimer mon compte</a>
 	</div>
 
 </body>

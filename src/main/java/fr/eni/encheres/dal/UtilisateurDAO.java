@@ -13,5 +13,6 @@ public interface UtilisateurDAO {
 	public Utilisateur selectInfo(Utilisateur utilisateur) throws DALException;
 	public Utilisateur selectById(int id) throws DALException;
 	public void modifierProfil(Utilisateur utilisateur, Utilisateur userUtilisateur) throws DALException;
+	public void supUser(Utilisateur utilisateur) throws DALException;
 
 }

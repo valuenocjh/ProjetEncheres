@@ -84,5 +84,16 @@ public class UtilisateurManager {
 		UtilisateurDAO ud = DAOFactory.getUserDAO();
 
 			return ud.selectById(id);
-		}	
+		}
+	
+	public void supUser (Utilisateur utilisateur) { 
+		UtilisateurDAO ud = DAOFactory.getUserDAO();
+		try {
+			ud.supUser(utilisateur);
+		} catch (DALException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }

@@ -9,8 +9,8 @@
 </head>
 <body>
 <%@include file="headertitre.jsp"%>
- <div class="formulairecreation">
-		<div class="creation">
+ <div class="modifprofil">
+		
 			<form action="<%=request.getContextPath()%>/CreationprofilServlet"
 				method="post">
 				<div>
@@ -39,11 +39,14 @@
 						name="confirmation" required>
 
 				</div>
+				<div>
 				<input type="submit" value="Créer">
+				<a href="<%=request.getContextPath()%>/login"> <input type="button" value="Annuler" />
+				</div>
 			</form>
-		</div>
+		
 </div>
-		<a href="<%=request.getContextPath()%>/login"> <input type="button" value="Annuler" />
+		
 		</a>
 </body>
 </html>

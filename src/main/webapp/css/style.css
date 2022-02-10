@@ -265,3 +265,20 @@ body {
     height: 40vh;
     min-height: fit-content;
 }
+
+
+.modifprofil {
+	text-align: -webkit-center;
+}
+.modifprofil form {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    	border-radius: 25px;
+    	padding: 2%;
+    		    box-shadow: 0px 0px 21px #15368d;
+    		        width: 40vw;
+    height: 40vh;
+    margin-top: 15vh;
+    min-height: fit-content;
+}

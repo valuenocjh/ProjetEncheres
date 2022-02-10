@@ -51,10 +51,7 @@ public class EncherirServlet extends HttpServlet {
 			if(article.getPrixVente()>=Integer.parseInt(request.getParameter("encherir"))) {
 				throw new Exception("Prix proposé inférieur au prix actuel");
 			}
-			
-			System.out.println(article.getPrixVente());
-			System.out.println(request.getParameter("encherir"));
-			
+						
 			if(!em.selectEnchere(enchere)) {
 				em.insertEnchere(enchere);
 			} else {

@@ -243,8 +243,6 @@ public class ArticleDAOImpl implements ArticleDAO {
 						.replaceAll(":nom_article", "'%" + article.getNomArticle() + "%'");			
 
 
-	System.out.println(requete);
-
 
 			pstmt = cnx.prepareStatement(requete);
 			rs = pstmt.executeQuery();

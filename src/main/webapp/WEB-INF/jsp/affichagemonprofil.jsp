@@ -12,8 +12,8 @@
 	<div class="titre">
 		<h3>Mon compte</h3>
 	</div>
-	
-	<div class="profil">
+	<div class="affichagemoncompte">
+	<div class="affichagemoncompte_2">
 		<div>
 		    <ul>
 		        <li><p>Pseudo : </p></li>
@@ -40,6 +40,7 @@
 		        <li><p>${rechercheUtilisateur.credit}</p></li>
 		    </ul>
 		</div>
+	</div>
 	</div>
 
 	<div class="titre">

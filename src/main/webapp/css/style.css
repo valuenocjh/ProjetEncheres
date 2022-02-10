@@ -249,3 +249,19 @@ body {
 	    top:30px;
     right:40px;
 }
+
+
+.affichagemoncompte {
+	text-align: -webkit-center;
+}
+.affichagemoncompte_2 {
+	    box-shadow: 0px 0px 21px #15368d;
+	border-radius: 25px;
+   align-items: center;
+    display: flex;
+    justify-content: center;
+    min-width: fit-content;
+    width: 40vw;
+    height: 40vh;
+    min-height: fit-content;
+}

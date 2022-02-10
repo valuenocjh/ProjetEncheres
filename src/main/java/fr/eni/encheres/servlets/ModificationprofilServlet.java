@@ -54,7 +54,22 @@ public class ModificationprofilServlet extends HttpServlet {
 		UtilisateurModification.setMotDePasse(request.getParameter("nouveaumotdepasse"));
 		PrintWriter out = response.getWriter();
 
-		if(UtilisateurModification.getPseudo().matches("\\p{Alnum}+") & request.getParameter("nouveaumotdepasse").equals(request.getParameter("confirmation")) & request.getParameter("motdepasse").equals(userAModifier.getMotDePasse()) &  request.getParameter("email").contains("@") & request.getParameter("telephone").matches("\\d+") & request.getParameter("codepostal").matches("\\d+")) {
+		
+		if(request.getParameter("nouveaumotdepasse").equals(request.getParameter("confirmation") )) {
+		}else {
+			//affichage message d'erreur si login ou mot de passe n'est pas bon
+			out.print("<p style=\\\"color:red\\\">Erreur dans le formulaire vérifier les champs</p>");    
+			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp");    
+			rd.include(request,response);
+			
+		}
+		
+		if (request.getParameter("nouveaumotdepasse").isEmpty() & request.getParameter("confirmation").isEmpty()) {
+			UtilisateurModification.setMotDePasse(request.getParameter("motdepasse"));
+		}
+		
+		if(UtilisateurModification.getPseudo().matches("\\p{Alnum}+") & request.getParameter("motdepasse").equals(userAModifier.getMotDePasse()) &  request.getParameter("email").contains("@") & request.getParameter("telephone").matches("\\d+") & request.getParameter("codepostal").matches("\\d+")) {
+			
 		//appel de la bll pour créer un utilisateurManager nommé um
 		UtilisateurManager um = UtilisateurManager.getInstance();
 		

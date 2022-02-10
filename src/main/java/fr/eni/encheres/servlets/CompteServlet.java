@@ -58,7 +58,6 @@ public class CompteServlet extends HttpServlet {
 		
 		article.setNomArticle(request.getParameter("filtre_nom"));
 		article.setUtilisateur((Utilisateur) request.getSession().getAttribute("rechercheUtilisateur"));
-		System.out.println(article.getNomArticle());
 		
 		// recuperation de la categorie choisie par l'utilisateur
 		String categorie = request.getParameter("categorie");

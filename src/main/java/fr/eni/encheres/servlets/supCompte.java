@@ -30,6 +30,7 @@ public class supCompte extends HttpServlet {
 		// creation d'un utilisateur avec les informations de l'utilisateur en session
 		Utilisateur userASup = (Utilisateur) request.getSession().getAttribute("rechercheUtilisateur");
 		UtilisateurManager um = UtilisateurManager.getInstance();
+		userASup.getNoUtilisateur();
 		um.supUser(userASup);
 		
 	

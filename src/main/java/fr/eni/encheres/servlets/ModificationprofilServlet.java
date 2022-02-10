@@ -52,16 +52,12 @@ public class ModificationprofilServlet extends HttpServlet {
 		UtilisateurModification.setCodePostal(request.getParameter("codepostal").trim());
 		UtilisateurModification.setVille(request.getParameter("ville").trim().toLowerCase());
 		UtilisateurModification.setMotDePasse(request.getParameter("nouveaumotdepasse"));
+		UtilisateurModification.setCredit(userAModifier.getCredit());
 		PrintWriter out = response.getWriter();
 
-		
-		if(request.getParameter("nouveaumotdepasse").equals(request.getParameter("confirmation") )) {
-		}else {
-			//affichage message d'erreur si login ou mot de passe n'est pas bon
-			out.print("<p style=\\\"color:red\\\">Erreur dans le formulaire vérifier les champs</p>");    
-			RequestDispatcher rd=request.getRequestDispatcher("/WEB-INF/jsp/creerunprofil.jsp");    
-			rd.include(request,response);
-			
+		try {
+		if(!request.getParameter("nouveaumotdepasse").equalsIgnoreCase(request.getParameter("confirmation"))){   
+			throw new Exception();
 		}
 		
 		if (request.getParameter("nouveaumotdepasse").isEmpty() & request.getParameter("confirmation").isEmpty()) {
@@ -94,5 +90,9 @@ public class ModificationprofilServlet extends HttpServlet {
         rd.include(request,response);
 	
 	}
+		} catch(Exception e){
+			out.print("<p style=\\\"color:red\\\">Les mots de passe ne correspondent pas</p>");
+			request.getRequestDispatcher("/WEB-INF/jsp/modificationprofil.jsp").forward(request, response);
+		}
 	}
 }

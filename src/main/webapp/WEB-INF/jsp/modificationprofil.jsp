@@ -46,10 +46,10 @@
         <input type="password" name="motdepasse" required> 
 
         <label>Nouveau mot de passe: </label>
-        <input type="password" name="nouveaumotdepasse" required> 
+        <input type="password" name="nouveaumotdepasse" > 
 
         <label>Confirmation: </label>
-        <input type="password" name="confirmation" required> 
+        <input type="password" name="confirmation" > 
    
  </div>
 

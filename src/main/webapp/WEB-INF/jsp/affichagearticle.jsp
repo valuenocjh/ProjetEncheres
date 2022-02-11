@@ -20,7 +20,8 @@
 		<div class="affichagearticle_infos">
 			<div>
 				<ul>
-					<li><p>${article.nomArticle}</p></li>
+					<li><p class="nomProduit">${article.nomArticle}</p></li>
+					<br>
 					<li><p>Description : ${article.description}</p></li>
 					<li><p>Catégorie : ${article.categorie.libelle}</p></li>
 					<li><p>Meilleure offre : ${article.prixVente} </p></li>

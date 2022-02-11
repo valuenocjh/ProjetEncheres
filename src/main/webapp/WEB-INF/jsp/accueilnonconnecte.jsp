@@ -46,8 +46,10 @@
 			
 				<span class="article">
 				<a href="<%=request.getContextPath()%>/AffichageArticle?id=${article.noArticle}">
+							<div class="pieceetvaleur">
 							<img class="piece" src="<%=request.getContextPath()%>/assets/img/piece.png" alt="piece">
 							<h2 class="valeurarticle">${article.prixVente}</h2>
+							</div>
 							<img class="imgarticle" src="<%=request.getContextPath()%>/assets/img/objet.png" alt="article">
 							
 							<div>

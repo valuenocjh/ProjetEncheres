@@ -50,23 +50,30 @@ public class AccueilServlet extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
+		// Création d'un objet article
 		Article article = new Article();
 		
+		// on lui donne le nom mis dans le filtre
 		article.setNomArticle(request.getParameter("filtre_nom"));
+		
+		// création d'un String catégorie à partir du choix de l'utilisateur
 		String categorie = request.getParameter("categorie");
 		
-		// récupérer ce qu'a choisit l'utilisateur et le mettre dans la requete
+		// création d'un objet catégorie
 		Categorie nouvelleCategorie = new Categorie();
-		nouvelleCategorie.setLibelle(categorie);
 		
+		// on lui donne le libellé choisit par l'utilisateur
+		nouvelleCategorie.setLibelle(categorie);
+		//on donne la catégorie a l'article
 		article.setCategorie(nouvelleCategorie);
-
+		// on crée une instance d'articleManager dans la bll 
 		ArticleManager am = ArticleManager.getInstance();
+		// création d'une liste d'Articles
 		List<Article> selectListeParFiltresModeDeconnecte;
 		
 
-		
+		// execution de la methode selectlisteparfiltresmodedeconnecte sur am
 		try {
 			selectListeParFiltresModeDeconnecte = am.selectListeParFiltresModeDeconnecte(article);
 			request.setAttribute("listeArticles", selectListeParFiltresModeDeconnecte);
@@ -74,9 +81,8 @@ public class AccueilServlet extends HttpServlet {
           e.printStackTrace();
 		}
 		
-		
+		// renvoi vers la jsp accueilconnecte avec affichage des résultats
 		request.getRequestDispatcher("/WEB-INF/jsp/accueilnonconnecte.jsp").forward(request, response);
-		//response.sendRedirect("/ProjetEncheres/");
 		
 		
 	}

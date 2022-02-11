@@ -79,33 +79,29 @@
 		<!-- div contenant les images et informations des ench�res -->
 		<div class="touteslesencheres">
 			<c:forEach items="${listeArticles}" var="article">
-
-
-				<span class="article"> <a
-					href="<%=request.getContextPath()%>/AffichageArticle?id=${article.noArticle}">
-						<img class="piece"
-						src="<%=request.getContextPath()%>/assets/img/piece.png"
-						alt="piece">
-						<h2 class="valeurarticle">${article.prixVente}</h2> <img
-						class="imgarticle"
-						src="<%=request.getContextPath()%>/assets/img/objet.png"
-						alt="article">
-
-						<div>
-							<ul>
-
-								<li class="nomProduit"><a
-									href="<%=request.getContextPath()%>/AffichageArticle?id=${article.noArticle}">${article.nomArticle}</a></li>
-								<br>
-								<li>Fin de l'enchère : ${article.dateFinEncheres}</li>
-								<li>Vendeur : <a
-									href="<%=request.getContextPath()%>/Monprofil?id=${article.utilisateur.noUtilisateur}">${article.utilisateur.pseudo}</a></li>
-							</ul>
-						</div>
+			
+			
+				<span class="article">
+				<a href="<%=request.getContextPath()%>/AffichageArticle?id=${article.noArticle}">
+							<div class="pieceetvaleur">
+							<img class="piece" src="<%=request.getContextPath()%>/assets/img/piece.png" alt="piece">
+							<h2 class="valeurarticle">${article.prixVente}</h2>
+							</div>
+							<img class="imgarticle" src="<%=request.getContextPath()%>/assets/img/objet.png" alt="article">
+							
+							<div>
+								<ul>
+		
+									<li class="nomProduit"><a href="<%=request.getContextPath()%>/AffichageArticle?id=${article.noArticle}">${article.nomArticle}</a></li>
+									<br>
+									<li>Fin de l'enchère : ${article.dateFinEncheres}</li>
+									<li>Vendeur : <a href="<%=request.getContextPath()%>/Monprofil?id=${article.utilisateur.noUtilisateur}">${article.utilisateur.pseudo}</a></li>
+								</ul>
+							</div>
 				</a>
 				</span>
-
-			</c:forEach>
+			
+		</c:forEach>
 
 		</div>
 	</main>

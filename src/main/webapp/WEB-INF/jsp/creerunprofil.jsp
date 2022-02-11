@@ -15,31 +15,32 @@
 				method="post">
 				<div>
 					<label>Pseudo: </label> <input type="text" name="pseudo" required>
-
+      				  <br>
 					<label>Prénom: </label> <input type="text" name="prenom" required>
-
+       				 <br>	
 					<label>Téléphone: </label> <input type="tel" name="telephone">
-
+					   <br>
 					<label>Code postal: </label> <input type="number" name="codepostal"
-						required> <label>Mot de passe: </label> <input
+						required>
+												        <br><label>Mot de passe: </label> <input
 						type="password" name="motdepasse" required>
+
 
 				</div>
 				<div>
-
 					<label>Nom: </label> <input type="text" name="nom" required>
-
+	        <br>
 					<label>Email: </label> <input type="email" name="email" required>
-
+        <br>
 					<label>Rue: </label> <input type="text" name="rue" required>
-
+        <br>
 					<label>Ville: </label> <input type="text" name="ville" required>
-
+        <br>
 					<label>Confirmation: </label> <input type="password"
 						name="confirmation" required>
 
 				</div>
-				<div>
+				<div class="validation">
 				<input type="submit" value="Créer">
 				<a href="<%=request.getContextPath()%>/login"> <input type="button" value="Annuler" />
 				</div>

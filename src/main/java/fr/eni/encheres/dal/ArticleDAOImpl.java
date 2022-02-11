@@ -165,7 +165,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Article> selectListeParFiltresModeConnecte = new ArrayList<Article>();
-		int i = 1;
+
 
 		// création de la requette avec le nom de l'article
 		String requete = "SELECT * FROM Articles INNER JOIN Categories ON Articles.CATEGORIE_no_categorie = Categories.no_categorie INNER JOIN Utilisateurs ON Articles.UTILISATEUR_no_utilisateur=Utilisateurs.no_utilisateur LEFT JOIN Encheres ON Articles.no_article = Encheres.ARTICLE_no_article WHERE nom_article LIKE :nom_article";
@@ -173,7 +173,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 		// complement de la requete avec le traitement des categories
 		if (!article.getCategorie().getLibelle().equalsIgnoreCase("Toutes")) {
 			requete += "  AND libelle = :categorie_libelle ";
-			i++;
+
 		}
 
 		String subRequest = "";
@@ -187,31 +187,31 @@ public class ArticleDAOImpl implements ArticleDAO {
 		// complement de la requete avec la checkbox mes encheres en cours cochee
 		if (ck_mesencheresencours) {
 			subRequest += "(date_fin_encheres >= GETDATE() AND Encheres.UTILISATEUR_no_utilisateur = :numero_utilisateur) OR";
-			i++;
+
 		}
 
 		// completement de la requete avec la checkbox mes encheres remportées cochée
 		if (ck_mesencheresremportees) {
 			subRequest += "(Encheres.UTILISATEUR_no_utilisateur = :numero_utilisateur AND Encheres.date_enchere < GETDATE() AND Encheres.montant_enchere = (SELECT MAX(montant_enchere) FROM Encheres e2 Where e2.ARTICLE_no_article = Articles.no_article)) OR";
-			i++;
+
 		}
 
 		// completement de la requete avec la checkbox mes ventes en cours cochée
 		if (ck_mesventesencours) {
 			subRequest += "(Articles.UTILISATEUR_no_utilisateur = :numero_utilisateur AND date_fin_encheres >= GETDATE() AND date_debut_encheres <= GETDATE()) OR";
-			i++;
+
 		}
 
 		// completement de la requete avec la checkbox mes ventes non débutées cochée
 		if (ck_ventesnondebutees) {
 			subRequest += "(Articles.UTILISATEUR_no_utilisateur = :numero_utilisateur AND date_debut_encheres > GETDATE()) OR";
-			i++;
+
 		}
 
 		// complement de la requete avec la checkbox ventes terminées cochée
 		if (ck_ventesterminees) {
 			subRequest += "(Articles.UTILISATEUR_no_utilisateur = :numero_utilisateur AND date_fin_encheres < GETDATE()) OR";
-			i++;
+
 		}
 		
 		if (!subRequest.isEmpty()) {
@@ -222,21 +222,7 @@ public class ArticleDAOImpl implements ArticleDAO {
 		requete += subRequest + ";";
 		try {
 			cnx = ConnectionProvider.seConnecter();
-
-			// ajout du nom d'article à la requete
-			// pstmt.setString(1, "%" + article.getNomArticle() + "%");
-
-			// si filtre différent de toutes : ajout du libellé de la categorie à la requete
-			/*
-			 * if (!article.getCategorie().getLibelle().equalsIgnoreCase("Toutes")) {
-			 * pstmt.setString(2, article.getCategorie().getLibelle()); }
-			 * 
-			 * // si une des checkbox est cochée, l'utilisateur devient celui de la session
-			 * if(ck_mesencheresencours || ck_mesencheresremportees || ck_mesventesencours
-			 * || ck_ventesnondebutees || ck_ventesterminees) { pstmt.setInt(3,
-			 * article.getUtilisateur().getNoUtilisateur()); }
-			 */ 
-					
+	
 
 	requete = requete.replaceAll(":categorie_libelle", "'" + article.getCategorie().getLibelle() + "'")
 						.replaceAll(":numero_utilisateur", String.valueOf(article.getUtilisateur().getNoUtilisateur()))

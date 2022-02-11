@@ -5,16 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>Mettre un article en vente</title>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css">
 </head>
 <body>
 <main>
-        <form action="<%=request.getContextPath()%>/VendreArticleServlet" method="post">
+<%@include file="headerconnecte.jsp" %>
+	<div class="profilmodif">
+        <form class="profil" action="<%=request.getContextPath()%>/VendreArticleServlet" method="post">
+        	<!-- div article -->
             <div>
-                <div">
+                <div>
                     <label>Article : </label>
                     <input type="text" name="article" required/>
                 </div>
-                <div"> 
+                <div> 
                     <label>Description : </label>
                     <input type="text" name="description" required/>
                 </div>
@@ -31,20 +35,22 @@
                     <label>Photo de l'article : </label>
                     <input type="file" name="photo" accept="image/png, image/jpeg">
                 </div>
-                <div">
+                <div>
                     <label>Mise à prix</label>
                     <input type="number" name="miseaprix" required/>
                 </div>
-                <div">
+                <div>
                     <label>Début de l'enchère : </label>
                     <input type="date" name="debutenchere" required/>
                 </div>
-                <div">
+                <div>
                     <label>Fin de l'enchère : </label>
                     <input type="date" name="finenchere" required/>
                 </div>
             </div>
-            <div style="border:solid">
+            
+            <!-- div vendeur -->
+            <div>
                 <div id="rue">
                     <label>Rue : </label>
                     <input type="text" name="rue" value="${rechercheUtilisateur.rue}"required/>
@@ -58,8 +64,11 @@
                     <input type="text" name="ville" value="${rechercheUtilisateur.ville}"required/>
                 </div>
             </div>
-            <input type="submit" value="envoyer"/>
+            	<div>
+            	<input type="submit" value="envoyer"/>
+            	</div>
         </form>
-        </main>
+   </div>
+   </main>
 </body>
 </html>
